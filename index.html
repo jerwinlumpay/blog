@@ -29,7 +29,7 @@
         header {
             background-color: #FFFFFF;
             border-bottom: 3px solid var(--khaki-light);
-            padding: 2rem 5%;
+            padding: 2.5rem 5%;
             text-align: center;
         }
 
@@ -42,6 +42,7 @@
         header p {
             font-style: italic;
             color: #666;
+            font-size: 1.1rem;
         }
 
         .container {
@@ -54,8 +55,8 @@
         }
 
         .main-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
         }
 
@@ -65,15 +66,16 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .blog-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
         }
 
         .card-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .category-tag {
@@ -85,12 +87,15 @@
             border-radius: 4px;
             margin-bottom: 0.8rem;
             text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.05rem;
         }
 
         .blog-card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
             color: var(--text-dark);
+            line-height: 1.3;
         }
 
         .blog-card h2 a {
@@ -104,15 +109,19 @@
 
         .blog-card p {
             color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
         }
 
         .read-more {
             color: var(--khaki-dark);
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
         }
 
         .sidebar {
@@ -133,7 +142,7 @@
         .lead-magnet {
             background-color: var(--pearl-white);
             border: 1px dashed var(--khaki-dark);
-            padding: 1rem;
+            padding: 1.25rem;
             border-radius: 6px;
             margin-top: 1.5rem;
             text-align: center;
@@ -141,10 +150,11 @@
 
         .lead-magnet input[type="email"] {
             width: 100%;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
+            padding: 0.6rem;
+            margin: 0.75rem 0;
             border: 1px solid var(--khaki-light);
             border-radius: 4px;
+            outline: none;
         }
 
         .lead-magnet button {
@@ -152,9 +162,15 @@
             color: white;
             border: none;
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.6rem;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .lead-magnet button:hover {
+            background: #735F43;
         }
 
         @media (max-width: 768px) {
@@ -172,39 +188,29 @@
     </header>
 
     <div class="container">
-        <!-- Main Post Grid -->
+        <!-- Main Content Area -->
         <main class="main-content">
             
-            <!-- Post 1 Card -->
+            <!-- Core Target Post -->
             <article class="blog-card">
                 <div class="card-content">
                     <span class="category-tag">Beginner Guide</span>
-                    <h2><a href="posts/how-to-become-a-va-2026.html">How to Become a Virtual Assistant with Zero Experience in 2026</a></h2>
-                    <p>The remote work industry is booming. Discover the step-by-step roadmap to packaging your existing corporate skills into high-demand VA services.</p>
-                    <a href="posts/how-to-become-a-va-2026.html" class="read-more">Read Guide &rarr;</a>
-                </div>
-            </article>
-
-            <!-- Post 2 Card -->
-            <article class="blog-card">
-                <div class="card-content">
-                    <span class="category-tag">Tech Tools</span>
-                    <h2><a href="posts/top-va-tech-skills.html">Top 5 Software & Automation Tools Every VA Must Master</a></h2>
-                    <p>From project management to AI productivity engines, mastering these key digital spaces will instantly double your market value to global clients.</p>
-                    <a href="posts/top-va-tech-skills.html" class="read-more">Read Guide &rarr;</a>
+                    <h2><a href="posts/how-to-become-a-va.html">How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</a></h2>
+                    <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options. Learn how to map out your foundations and step into the virtual arena.</p>
+                    <a href="posts/how-to-become-a-va.html" class="read-more">Read Guide &rarr;</a>
                 </div>
             </article>
 
         </main>
 
-        <!-- Sidebar Components -->
+        <!-- Sidebar -->
         <aside class="sidebar">
             <h3>About the Blog</h3>
-            <p style="font-size: 0.9rem; color: #555;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
+            <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
             
             <div class="lead-magnet">
                 <h4>Free VA Blueprint</h4>
-                <p style="font-size: 0.8rem; margin-bottom: 0.5rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
+                <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
                 <input type="email" placeholder="Your Email Address">
                 <button type="button">Download Freebie</button>
             </div>
