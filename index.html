@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Assistant Tutorials | Jerwin Lawan Lumpay</title>
+    <style>
+        :root {
+            --pearl-white: #FDFBF7;
+            --khaki-dark: #8B7355;
+            --khaki-light: #C3B091;
+            --text-dark: #2C2A29;
+            --bg-card: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--pearl-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #FFFFFF;
+            border-bottom: 3px solid var(--khaki-light);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--khaki-dark);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-style: italic;
+            color: #666;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid #EAE6DF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: var(--khaki-light);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .blog-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .blog-card h2 a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card h2 a:hover {
+            color: var(--khaki-dark);
+        }
+
+        .blog-card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--khaki-dark);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .sidebar {
+            background: var(--bg-card);
+            border: 1px solid #EAE6DF;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            border-bottom: 2px solid var(--khaki-light);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--khaki-dark);
+        }
+
+        .lead-magnet {
+            background-color: var(--pearl-white);
+            border: 1px dashed var(--khaki-dark);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .lead-magnet input[type="email"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid var(--khaki-light);
+            border-radius: 4px;
+        }
+
+        .lead-magnet button {
+            background: var(--khaki-dark);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Virtual Assistant Tutorials</h1>
+        <p>Your Blueprint to Landing Global Clients & Mastering Remote Work</p>
+    </header>
+
+    <div class="container">
+        <!-- Main Post Grid -->
+        <main class="main-content">
+            
+            <!-- Post 1 Card -->
+            <article class="blog-card">
+                <div class="card-content">
+                    <span class="category-tag">Beginner Guide</span>
+                    <h2><a href="posts/how-to-become-a-va-2026.html">How to Become a Virtual Assistant with Zero Experience in 2026</a></h2>
+                    <p>The remote work industry is booming. Discover the step-by-step roadmap to packaging your existing corporate skills into high-demand VA services.</p>
+                    <a href="posts/how-to-become-a-va-2026.html" class="read-more">Read Guide &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Post 2 Card -->
+            <article class="blog-card">
+                <div class="card-content">
+                    <span class="category-tag">Tech Tools</span>
+                    <h2><a href="posts/top-va-tech-skills.html">Top 5 Software & Automation Tools Every VA Must Master</a></h2>
+                    <p>From project management to AI productivity engines, mastering these key digital spaces will instantly double your market value to global clients.</p>
+                    <a href="posts/top-va-tech-skills.html" class="read-more">Read Guide &rarr;</a>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- Sidebar Components -->
+        <aside class="sidebar">
+            <h3>About the Blog</h3>
+            <p style="font-size: 0.9rem; color: #555;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
+            
+            <div class="lead-magnet">
+                <h4>Free VA Blueprint</h4>
+                <p style="font-size: 0.8rem; margin-bottom: 0.5rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
+                <input type="email" placeholder="Your Email Address">
+                <button type="button">Download Freebie</button>
+            </div>
+        </aside>
+    </div>
+
+</body>
+</html>
