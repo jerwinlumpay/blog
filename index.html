@@ -204,18 +204,14 @@
             <h3>About the Blog</h3>
             <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent career.</p>
             
-            <!-- Native Lead Magnet Subscription Form -->
             <div class="lead-magnet-container">
                 <h4>Free VA Blueprint</h4>
                 <p>Get the 10-Step Launch Checklist delivered instantly.</p>
                 
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <!-- API Key associated with your Web3Forms account -->
-                    <input type="hidden" name="access_key" value="8b516b35-f5e4-4333-a99f-c40a8d0492c5">
-                    <input type="hidden" name="subject" value="New VA Lead Magnet Subscriber">
-                    <input type="hidden" name="redirect" value="https://blog.jerwinlumpay.com/va_launch_checklist.pdf">
-                    
-                    <input type="email" name="email" placeholder="Your Email Address" required>
+                <!-- Official MailerLite Native Form Routing Entry Gateway -->
+                <form action="https://assets.mailerlite.com/jsonp/2461481/forms/124749453443335391/subscribe" method="POST">
+                    <!-- Standard Email Input Field Structure (fields[email] maps to MailerLite) -->
+                    <input type="email" name="fields[email]" placeholder="Your Email Address" required>
                     <button type="submit">Download Freebie</button>
                 </form>
             </div>
