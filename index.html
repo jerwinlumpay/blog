@@ -39,12 +39,6 @@
             margin-bottom: 0.5rem;
         }
 
-        header p {
-            font-style: italic;
-            color: #666;
-            font-size: 1.1rem;
-        }
-
         .container {
             display: grid;
             grid-template-columns: 3fr 1fr;
@@ -54,47 +48,11 @@
             padding: 0 1rem;
         }
 
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
         .blog-card {
             background: var(--bg-card);
             border: 1px solid #EAE6DF;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .card-content {
             padding: 2.5rem;
-        }
-
-        .category-tag {
-            display: inline-block;
-            background: var(--khaki-light);
-            color: #fff;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .blog-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
-
-        .blog-card p {
-            color: #444;
-            margin-bottom: 1.25rem;
-            font-size: 1.05rem;
         }
 
         .sidebar {
@@ -123,44 +81,7 @@
 
         .lead-magnet-container h4 {
             font-size: 1.25rem;
-            color: var(--text-dark);
-            font-weight: bold;
             margin-bottom: 0.5rem;
-        }
-
-        .lead-magnet-container p {
-            font-size: 0.9rem;
-            color: #444;
-            line-height: 1.4;
-            margin-bottom: 1rem;
-        }
-
-        .lead-magnet-container input[type="email"] {
-            width: 100%;
-            padding: 0.65rem;
-            margin-bottom: 0.75rem;
-            border: 1px solid var(--khaki-light);
-            border-radius: 4px;
-            outline: none;
-            font-size: 0.95rem;
-            background-color: #FFFFFF;
-        }
-
-        .lead-magnet-container button {
-            background-color: var(--khaki-dark);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 0.65rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: background 0.2s;
-        }
-
-        .lead-magnet-container button:hover {
-            background-color: #735F43;
         }
 
         @media (max-width: 768px) {
@@ -178,39 +99,25 @@
     </header>
 
     <div class="container">
-        <main class="main-content">
+        <main>
             <article class="blog-card">
-                <div class="card-content">
-                    <span class="category-tag">Beginner Guide</span>
-                    <h2>How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</h2>
-                    
-                    <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options.</p>
-                    
-                    <p>A Virtual Assistant (VA) provides remote support to businesses, entrepreneurs, and organizations by handling tasks such as administrative work, customer service, scheduling, email management, research, social media support, and more.</p>
-                    
-                    <p>To become a successful Virtual Assistant, start by identifying your existing skills. Strong communication, organization, time management, and attention to detail are valuable foundations. You can then improve your skills through online learning, practice using digital tools, and building confidence through small projects.</p>
-                    
-                    <p>Creating a professional profile, preparing a strong resume, and showcasing your experience are important steps to attract clients. Many businesses look for reliable assistants who can help them save time and improve daily operations.</p>
-                    
-                    <p>Becoming a Virtual Assistant is not only about working remotely — it is about delivering quality service, building trust, and creating long-term professional relationships.</p>
-                    
-                    <p style="font-weight: bold; color: var(--khaki-dark);">Your journey starts with one step: learn, improve, and take action. The virtual world is full of opportunities for those prepared to provide value.</p>
-                </div>
+                <h2>How to Become a Virtual Assistant: A Beginner’s Guide</h2>
+                <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options.</p>
             </article>
         </main>
 
         <aside class="sidebar">
             <h3>About the Blog</h3>
-            <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent career.</p>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">Providing actionable resources and technical skill tutorials.</p>
             
             <div class="lead-magnet-container">
                 <h4>Free VA Blueprint</h4>
                 <p>Get the 10-Step Launch Checklist delivered instantly.</p>
                 
-                <!-- Updated Clean Form -->
-                <form action="https://groot.mailerlite.com/v1/webforms/submit/k2o4g7" method="POST">
-                    <input type="email" name="fields[email]" placeholder="Your Email Address" required>
-                    <button type="submit">Download Freebie</button>
+                <!-- This form submits directly to MailerLite, bypassing Cloudflare -->
+                <form action="https://groot.mailerlite.com/v1/webforms/submit/k2o4g7" method="POST" target="_blank">
+                    <input type="email" name="fields[email]" placeholder="Your Email Address" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;">
+                    <button type="submit" style="width: 100%; padding: 10px; background-color: #8B7355; color: white; border: none; border-radius: 4px; cursor: pointer;">Download Freebie</button>
                 </form>
             </div>
         </aside>
