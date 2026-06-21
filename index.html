@@ -214,9 +214,8 @@
                 <h4>Free VA Blueprint</h4>
                 <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
                 
-                <!-- Linked directly to your specific Google Form backend configuration -->
                 <form id="vaLeadForm">
-                    <input type="email" name="entry.1055699628" id="subscriberEmail" placeholder="Your Email Address" required>
+                    <input type="email" id="subscriberEmail" placeholder="Your Email Address" required>
                     <button type="submit" id="submitBtn">Download Freebie</button>
                 </form>
                 
@@ -229,7 +228,6 @@
         document.getElementById('vaLeadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const form = this;
             const submitBtn = document.getElementById('submitBtn');
             const statusText = document.getElementById('statusText');
             const emailInput = document.getElementById('subscriberEmail');
@@ -237,21 +235,25 @@
             submitBtn.textContent = "Processing...";
             submitBtn.disabled = true;
 
-            const formData = new FormData(form);
+            // Use URLSearchParams to enforce raw text mapping for form fields
+            const formPayload = new URLSearchParams();
+            formPayload.append('entry.1055699628', emailInput.value);
 
-            // POST directly into Google Forms server cluster
+            // POST directly to Google Forms backend action
             fetch('https://docs.google.com/forms/d/e/1FAIpQLSes_B3G9D7BJdrDTau57_EGi5fLQ9k3AXhJjw5eWZL6-qYO_A/formResponse', {
                 method: 'POST',
-                body: formData,
-                mode: 'no-cors'
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formPayload.toString()
             })
             .then(() => {
-                // Success feedback
                 statusText.style.color = "green";
                 statusText.textContent = "Success! Your download is starting.";
                 statusText.style.display = "block";
                 
-                // Fire instant client local file download sequence
+                // Fire download event
                 const downloadLink = document.createElement('a');
                 downloadLink.href = 'va_launch_checklist.pdf'; 
                 downloadLink.download = 'va_launch_checklist.pdf';
@@ -260,7 +262,6 @@
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
                 
-                // Clear text box field
                 emailInput.value = "";
             })
             .catch(error => {
