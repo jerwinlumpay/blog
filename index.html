@@ -195,9 +195,7 @@
     </header>
 
     <div class="container">
-        <!-- Main Content Area -->
         <main class="main-content">
-            
             <article class="blog-card">
                 <div class="card-content">
                     <span class="category-tag">Beginner Guide</span>
@@ -206,26 +204,19 @@
                     <a href="posts/how-to-become-a-va-2026.html" class="read-more">Read Guide &rarr;</a>
                 </div>
             </article>
-
         </main>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <h3>About the Blog</h3>
             <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
             
-            <!-- Lead Magnet Form Integrated with Web3Forms -->
             <div class="lead-magnet">
                 <h4>Free VA Blueprint</h4>
                 <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
                 
+                <!-- Linked directly to your specific Google Form backend configuration -->
                 <form id="vaLeadForm">
-                    <!-- Your Form Access Key from image_02adac.png is added here -->
-                    <input type="hidden" name="access_key" value="8b516b53-f5e4-4333-a99f-c40a8d0492c5">
-                    <input type="hidden" name="from_name" value="VA Tutorials Blog">
-                    <input type="hidden" name="subject" value="New Subscriber for VA Blueprint!">
-                    
-                    <input type="email" name="email" id="subscriberEmail" placeholder="Your Email Address" required>
+                    <input type="email" name="entry.1055699628" id="subscriberEmail" placeholder="Your Email Address" required>
                     <button type="submit" id="submitBtn">Download Freebie</button>
                 </form>
                 
@@ -234,7 +225,6 @@
         </aside>
     </div>
 
-    <!-- Processing & Forced Download Engine -->
     <script>
         document.getElementById('vaLeadForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -249,32 +239,29 @@
 
             const formData = new FormData(form);
 
-            // Submit data to Web3Forms API
-            fetch('https://api.web3forms.com/submit', {
+            // POST directly into Google Forms server cluster
+            fetch('https://docs.google.com/forms/d/e/1FAIpQLSes_B3G9D7BJdrDTau57_EGi5fLQ9k3AXhJjw5eWZL6-qYO_A/formResponse', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                mode: 'no-cors'
             })
-            .then(async (response) => {
-                if (response.status === 200) {
-                    // Update user feedback text
-                    statusText.style.color = "green";
-                    statusText.textContent = "Success! Your download is starting.";
-                    statusText.style.display = "block";
-                    
-                    // Force download pipeline for your file
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = 'va_launch_checklist.pdf'; 
-                    downloadLink.download = 'va_launch_checklist.pdf';
-                    
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-                    
-                    // Clear out input field
-                    emailInput.value = "";
-                } else {
-                    throw new Error();
-                }
+            .then(() => {
+                // Success feedback
+                statusText.style.color = "green";
+                statusText.textContent = "Success! Your download is starting.";
+                statusText.style.display = "block";
+                
+                // Fire instant client local file download sequence
+                const downloadLink = document.createElement('a');
+                downloadLink.href = 'va_launch_checklist.pdf'; 
+                downloadLink.download = 'va_launch_checklist.pdf';
+                
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                
+                // Clear text box field
+                emailInput.value = "";
             })
             .catch(error => {
                 statusText.style.color = "red";
