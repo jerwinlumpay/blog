@@ -214,8 +214,9 @@
                 <h4>Free VA Blueprint</h4>
                 <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
                 
-                <form id="vaLeadForm">
-                    <input type="email" id="subscriberEmail" placeholder="Your Email Address" required>
+                <!-- Target points directly to our hidden frame below -->
+                <form id="vaLeadForm" action="https://docs.google.com/forms/d/e/1FAIpQLSes_B3G9D7BJdrDTau57_EGi5fLQ9k3AXhJjw5eWZL6-qYO_A/formResponse" method="POST" target="hidden_iframe">
+                    <input type="email" name="entry.1055699628" id="subscriberEmail" placeholder="Your Email Address" required>
                     <button type="submit" id="submitBtn">Download Freebie</button>
                 </form>
                 
@@ -224,36 +225,33 @@
         </aside>
     </div>
 
+    <!-- Hidden Iframe to process the response without page redirection -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
     <script>
-        document.getElementById('vaLeadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+        let formSubmitted = false;
+
+        // Listen for form submission setup
+        document.getElementById('vaLeadForm').addEventListener('submit', function() {
             const submitBtn = document.getElementById('submitBtn');
-            const statusText = document.getElementById('statusText');
-            const emailInput = document.getElementById('subscriberEmail');
-            
             submitBtn.textContent = "Processing...";
             submitBtn.disabled = true;
+            formSubmitted = true;
+        });
 
-            // Use URLSearchParams to enforce raw text mapping for form fields
-            const formPayload = new URLSearchParams();
-            formPayload.append('entry.1055699628', emailInput.value);
+        // Trigger when the hidden iframe registers the Google server return action
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            if (formSubmitted) {
+                const statusText = document.getElementById('statusText');
+                const emailInput = document.getElementById('subscriberEmail');
+                const submitBtn = document.getElementById('submitBtn');
 
-            // POST directly to Google Forms backend action
-            fetch('https://docs.google.com/forms/d/e/1FAIpQLSes_B3G9D7BJdrDTau57_EGi5fLQ9k3AXhJjw5eWZL6-qYO_A/formResponse', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: formPayload.toString()
-            })
-            .then(() => {
+                // UI adjustments
                 statusText.style.color = "green";
                 statusText.textContent = "Success! Your download is starting.";
                 statusText.style.display = "block";
                 
-                // Fire download event
+                // File delivery handling
                 const downloadLink = document.createElement('a');
                 downloadLink.href = 'va_launch_checklist.pdf'; 
                 downloadLink.download = 'va_launch_checklist.pdf';
@@ -262,17 +260,12 @@
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
                 
+                // Reset states
                 emailInput.value = "";
-            })
-            .catch(error => {
-                statusText.style.color = "red";
-                statusText.textContent = "Submission issue. Please try again.";
-                statusText.style.display = "block";
-            })
-            .finally(() => {
                 submitBtn.textContent = "Download Freebie";
                 submitBtn.disabled = false;
-            });
+                formSubmitted = false;
+            }
         });
     </script>
 
