@@ -195,7 +195,6 @@
     </header>
 
     <div class="container">
-        <!-- Main Content Area -->
         <main class="main-content">
             
             <article class="blog-card">
@@ -209,22 +208,16 @@
 
         </main>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <h3>About the Blog</h3>
             <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
             
-            <!-- Lead Magnet Form -->
             <div class="lead-magnet">
                 <h4>Free VA Blueprint</h4>
                 <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
                 
-                <form id="vaLeadForm">
-                    <!-- Head over to web3forms.com to drop your free key here -->
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
-                    <input type="hidden" name="subject" value="New VA Lead Subscriber">
-                    
-                    <input type="email" name="email" id="subscriberEmail" placeholder="Your Email Address" required>
+                <form id="vaLeadForm" action="https://docs.google.com/forms/d/e/1FAIpQLSes_B3G9D7BJdrDTau57_EGi5fLQ9k3AXhJjw5eWZL6-qYO_A/formResponse" method="POST">
+                    <input type="email" name="entry.467389445" id="subscriberEmail" placeholder="Your Email Address" required>
                     <button type="submit" id="submitBtn">Download Freebie</button>
                 </form>
                 
@@ -233,11 +226,11 @@
         </aside>
     </div>
 
-    <!-- Processing Engine -->
     <script>
         document.getElementById('vaLeadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const form = this;
             const submitBtn = document.getElementById('submitBtn');
             const statusText = document.getElementById('statusText');
             const emailInput = document.getElementById('subscriberEmail');
@@ -245,35 +238,29 @@
             submitBtn.textContent = "Processing...";
             submitBtn.disabled = true;
 
-            const formData = new FormData(this);
-            
-            // 1. Submit email layout data over back-end API channel
-            fetch('https://api.web3forms.com/submit', {
+            // Send form data silently to Google Forms backend in the background
+            fetch(form.action, {
                 method: 'POST',
-                body: formData
+                mode: 'no-cors',
+                body: new FormData(form)
             })
-            .then(async (response) => {
-                if (response.status === 200) {
-                    statusText.style.color = "green";
-                    statusText.textContent = "Success! Your download is starting.";
-                    statusText.style.display = "block";
-                    
-                    // 2. Trigger automatic template script download link
-                    // Change '.pdf' below to match your actual file format (like .docx, .zip)
-                    const fileExtension = '.pdf'; 
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = 'va_launch_checklist' + fileExtension; 
-                    downloadLink.download = 'va_launch_checklist' + fileExtension;
-                    
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-                    
-                    // Reset fields
-                    emailInput.value = "";
-                } else {
-                    throw new Error();
-                }
+            .then(() => {
+                // Display success message to user
+                statusText.style.color = "green";
+                statusText.textContent = "Success! Your download is starting.";
+                statusText.style.display = "block";
+                
+                // Instantly trigger your uploaded template file download
+                const downloadLink = document.createElement('a');
+                downloadLink.href = 'va_launch_checklist.pdf'; // Matches your root filename
+                downloadLink.download = 'va_launch_checklist.pdf';
+                
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                
+                // Clear out field
+                emailInput.value = "";
             })
             .catch(error => {
                 statusText.style.color = "red";
