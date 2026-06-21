@@ -173,6 +173,13 @@
             background: #735F43;
         }
 
+        .status-message {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -191,7 +198,6 @@
         <!-- Main Content Area -->
         <main class="main-content">
             
-            <!-- Updated Post Card Matching Your Folder Layout -->
             <article class="blog-card">
                 <div class="card-content">
                     <span class="category-tag">Beginner Guide</span>
@@ -208,14 +214,78 @@
             <h3>About the Blog</h3>
             <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
             
+            <!-- Lead Magnet Form -->
             <div class="lead-magnet">
                 <h4>Free VA Blueprint</h4>
                 <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
-                <input type="email" placeholder="Your Email Address">
-                <button type="button">Download Freebie</button>
+                
+                <form id="vaLeadForm">
+                    <!-- Head over to web3forms.com to drop your free key here -->
+                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New VA Lead Subscriber">
+                    
+                    <input type="email" name="email" id="subscriberEmail" placeholder="Your Email Address" required>
+                    <button type="submit" id="submitBtn">Download Freebie</button>
+                </form>
+                
+                <div id="statusText" class="status-message"></div>
             </div>
         </aside>
     </div>
+
+    <!-- Processing Engine -->
+    <script>
+        document.getElementById('vaLeadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusText = document.getElementById('statusText');
+            const emailInput = document.getElementById('subscriberEmail');
+            
+            submitBtn.textContent = "Processing...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+            
+            // 1. Submit email layout data over back-end API channel
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async (response) => {
+                if (response.status === 200) {
+                    statusText.style.color = "green";
+                    statusText.textContent = "Success! Your download is starting.";
+                    statusText.style.display = "block";
+                    
+                    // 2. Trigger automatic template script download link
+                    // Change '.pdf' below to match your actual file format (like .docx, .zip)
+                    const fileExtension = '.pdf'; 
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = 'va_launch_checklist' + fileExtension; 
+                    downloadLink.download = 'va_launch_checklist' + fileExtension;
+                    
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    
+                    // Reset fields
+                    emailInput.value = "";
+                } else {
+                    throw new Error();
+                }
+            })
+            .catch(error => {
+                statusText.style.color = "red";
+                statusText.textContent = "Submission issue. Please try again.";
+                statusText.style.display = "block";
+            })
+            .finally(() => {
+                submitBtn.textContent = "Download Freebie";
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 
 </body>
 </html>
