@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Assistant Tutorials | Jerwin Lawan Lumpay</title>
+    
+    <script>
+        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
+        l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);
+        })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+        ml('account', '2461481');
+    </script>
     <style>
         :root {
             --pearl-white: #FDFBF7;
@@ -66,12 +73,6 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
         }
 
         .card-content {
@@ -88,40 +89,17 @@
             margin-bottom: 0.8rem;
             text-transform: uppercase;
             font-weight: bold;
-            letter-spacing: 0.05rem;
         }
 
         .blog-card h2 {
             font-size: 1.6rem;
             margin-bottom: 0.8rem;
             color: var(--text-dark);
-            line-height: 1.3;
-        }
-
-        .blog-card h2 a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .blog-card h2 a:hover {
-            color: var(--khaki-dark);
         }
 
         .blog-card p {
             color: #555;
-            font-size: 1.05rem;
             margin-bottom: 1.25rem;
-        }
-
-        .read-more {
-            color: var(--khaki-dark);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        .read-more:hover {
-            text-decoration: underline;
         }
 
         .sidebar {
@@ -139,45 +117,12 @@
             color: var(--khaki-dark);
         }
 
-        .lead-magnet {
+        .lead-magnet-box {
             background-color: var(--pearl-white);
             border: 1px dashed var(--khaki-dark);
-            padding: 1.25rem;
+            padding: 1rem;
             border-radius: 6px;
             margin-top: 1.5rem;
-            text-align: center;
-        }
-
-        .lead-magnet input[type="email"] {
-            width: 100%;
-            padding: 0.6rem;
-            margin: 0.75rem 0;
-            border: 1px solid var(--khaki-light);
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .lead-magnet button {
-            background: var(--khaki-dark);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 0.6rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .lead-magnet button:hover {
-            background: #735F43;
-        }
-
-        .status-message {
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -199,75 +144,21 @@
             <article class="blog-card">
                 <div class="card-content">
                     <span class="category-tag">Beginner Guide</span>
-                    <h2><a href="posts/how-to-become-a-va-2026.html">How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</a></h2>
-                    <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options. Learn how to map out your foundations and step into the virtual arena.</p>
-                    <a href="posts/how-to-become-a-va-2026.html" class="read-more">Read Guide &rarr;</a>
+                    <h2>How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</h2>
+                    <p>The way people work is changing. Learn how to map out your foundations and step into the virtual arena dynamically.</p>
                 </div>
             </article>
         </main>
 
         <aside class="sidebar">
             <h3>About the Blog</h3>
-            <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
+            <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent career.</p>
             
-            <div class="lead-magnet">
-                <h4>Free VA Blueprint</h4>
-                <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
-                
-                <!-- Target points directly to our hidden frame below -->
-                <form id="vaLeadForm" action="https://docs.google.com/forms/d/e/1FAIpQLSes_B3G9D7BJdrDTau57_EGi5fLQ9k3AXhJjw5eWZL6-qYO_A/formResponse" method="POST" target="hidden_iframe">
-                    <input type="email" name="entry.1055699628" id="subscriberEmail" placeholder="Your Email Address" required>
-                    <button type="submit" id="submitBtn">Download Freebie</button>
-                </form>
-                
-                <div id="statusText" class="status-message"></div>
+            <div class="lead-magnet-box">
+                <div class="ml-embedded" data-form="BRXBiz"></div>
             </div>
         </aside>
     </div>
-
-    <!-- Hidden Iframe to process the response without page redirection -->
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-    <script>
-        let formSubmitted = false;
-
-        // Listen for form submission setup
-        document.getElementById('vaLeadForm').addEventListener('submit', function() {
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.textContent = "Processing...";
-            submitBtn.disabled = true;
-            formSubmitted = true;
-        });
-
-        // Trigger when the hidden iframe registers the Google server return action
-        document.getElementById('hidden_iframe').addEventListener('load', function() {
-            if (formSubmitted) {
-                const statusText = document.getElementById('statusText');
-                const emailInput = document.getElementById('subscriberEmail');
-                const submitBtn = document.getElementById('submitBtn');
-
-                // UI adjustments
-                statusText.style.color = "green";
-                statusText.textContent = "Success! Your download is starting.";
-                statusText.style.display = "block";
-                
-                // File delivery handling
-                const downloadLink = document.createElement('a');
-                downloadLink.href = 'va_launch_checklist.pdf'; 
-                downloadLink.download = 'va_launch_checklist.pdf';
-                
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-                
-                // Reset states
-                emailInput.value = "";
-                submitBtn.textContent = "Download Freebie";
-                submitBtn.disabled = false;
-                formSubmitted = false;
-            }
-        });
-    </script>
 
 </body>
 </html>
