@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Assistant Tutorials | Jerwin Lawan Lumpay</title>
-    
-    <script>
-        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
-        l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);
-        })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-        ml('account', '2461481');
-    </script>
     <style>
         :root {
             --pearl-white: #FDFBF7;
@@ -76,7 +69,7 @@
         }
 
         .card-content {
-            padding: 2rem;
+            padding: 2.5rem;
         }
 
         .category-tag {
@@ -86,20 +79,22 @@
             font-size: 0.75rem;
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             font-weight: bold;
         }
 
         .blog-card h2 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.25rem;
             color: var(--text-dark);
+            line-height: 1.3;
         }
 
         .blog-card p {
-            color: #555;
+            color: #444;
             margin-bottom: 1.25rem;
+            font-size: 1.05rem;
         }
 
         .sidebar {
@@ -117,9 +112,56 @@
             color: var(--khaki-dark);
         }
 
-        .lead-magnet-box {
+        .lead-magnet-container {
+            background-color: var(--pearl-white);
+            border: 1px dashed var(--khaki-dark);
+            padding: 1.5rem 1.25rem;
+            border-radius: 6px;
             margin-top: 1.5rem;
-            min-height: 250px; /* Reserves space while script renders graphics natively */
+            text-align: center;
+        }
+
+        .lead-magnet-container h4 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .lead-magnet-container p {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .lead-magnet-container input[type="email"] {
+            width: 100%;
+            padding: 0.65rem;
+            margin-bottom: 0.75rem;
+            border: 1px solid var(--khaki-light);
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.95rem;
+            background-color: #FFFFFF;
+            color: var(--text-dark);
+        }
+
+        .lead-magnet-container button {
+            background-color: var(--khaki-dark);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.65rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .lead-magnet-container button:hover {
+            background-color: #735F43;
         }
 
         @media (max-width: 768px) {
@@ -142,7 +184,18 @@
                 <div class="card-content">
                     <span class="category-tag">Beginner Guide</span>
                     <h2>How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</h2>
-                    <p>The way people work is changing. Learn how to map out your foundations and step into the virtual arena dynamically.</p>
+                    
+                    <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options.</p>
+                    
+                    <p>A Virtual Assistant (VA) provides remote support to businesses, entrepreneurs, and organizations by handling tasks such as administrative work, customer service, scheduling, email management, research, social media support, and more.</p>
+                    
+                    <p>To become a successful Virtual Assistant, start by identifying your existing skills. Strong communication, organization, time management, and attention to detail are valuable foundations. You can then improve your skills through online learning, practice using digital tools, and building confidence through small projects.</p>
+                    
+                    <p>Creating a professional profile, preparing a strong resume, and showcasing your experience are important steps to attract clients. Many businesses look for reliable assistants who can help them save time and improve daily operations.</p>
+                    
+                    <p>Becoming a Virtual Assistant is not only about working remotely — it is about delivering quality service, building trust, and creating long-term professional relationships.</p>
+                    
+                    <p style="font-weight: bold; color: var(--khaki-dark);">Your journey starts with one step: learn, improve, and take action. The virtual world is full of opportunities for those prepared to provide value.</p>
                 </div>
             </article>
         </main>
@@ -151,8 +204,20 @@
             <h3>About the Blog</h3>
             <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent career.</p>
             
-            <div class="lead-magnet-box">
-                <div class="ml-embedded" data-form="BRXBiz"></div>
+            <!-- Native Lead Magnet Subscription Form -->
+            <div class="lead-magnet-container">
+                <h4>Free VA Blueprint</h4>
+                <p>Get the 10-Step Launch Checklist delivered instantly.</p>
+                
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <!-- API Key associated with your Web3Forms account -->
+                    <input type="hidden" name="access_key" value="8b516b35-f5e4-4333-a99f-c40a8d0492c5">
+                    <input type="hidden" name="subject" value="New VA Lead Magnet Subscriber">
+                    <input type="hidden" name="redirect" value="https://blog.jerwinlumpay.com/va_launch_checklist.pdf">
+                    
+                    <input type="email" name="email" placeholder="Your Email Address" required>
+                    <button type="submit">Download Freebie</button>
+                </form>
             </div>
         </aside>
     </div>
