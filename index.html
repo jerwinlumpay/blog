@@ -12,9 +12,6 @@
     
     <title>How to Become a Virtual Assistant: A Beginner’s Guide</title>
     
-    <!-- Favicon Placeholder -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-
     <style>
         :root {
             --primary-blue: #0056b3;
@@ -22,7 +19,7 @@
             --light-bg: #f4f7f9;
             --text-dark: #333;
             --text-light: #fff;
-            --accent: #007bff;
+            --accent-green: #28a745;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,9 +29,10 @@
 
         /* Hero Section */
         .hero { background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); color: var(--text-light); padding: 80px 20px; text-align: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 20px; animation: fadeInUp 1s ease; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
         .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
-        .btn { display: inline-block; padding: 15px 30px; background: #fff; color: var(--primary-blue); text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.3s, background 0.3s; }
+        
+        .btn { display: inline-block; padding: 15px 30px; background: #fff; color: var(--primary-blue); text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.3s, background 0.3s; border: none; cursor: pointer; }
         .btn:hover { background: #f0f0f0; transform: translateY(-3px); }
 
         /* Content Section */
@@ -42,23 +40,16 @@
         .content h2 { margin-bottom: 20px; color: var(--primary-blue); }
         .content p { margin-bottom: 20px; }
 
-        /* Download Section */
-        .download-section { background: var(--light-bg); padding: 50px; text-align: center; border-radius: 10px; margin: 40px 0; }
-
-        /* Newsletter Section */
+        /* Sections */
+        .card-section { background: var(--light-bg); padding: 50px; text-align: center; border-radius: 10px; margin: 40px 0; }
         .newsletter { padding: 60px 20px; text-align: center; border-top: 1px solid #ddd; }
-        .newsletter input { padding: 12px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
 
         /* Footer */
         footer { text-align: center; padding: 40px; background: #333; color: #fff; font-size: 0.9rem; }
         footer a { color: #fff; margin: 0 10px; text-decoration: none; }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Responsive */
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
-            .newsletter input { width: 100%; margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -68,7 +59,7 @@
         <div class="container">
             <h1>How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</h1>
             <p>Start your journey toward a flexible and successful remote career by learning the skills, tools, and steps needed to become a Virtual Assistant.</p>
-            <a href="#download" class="btn">Download Free VA Checklist</a>
+            <a href="#download" class="btn">Get Your Free Checklist</a>
         </div>
     </header>
 
@@ -83,11 +74,12 @@
             <p>Your journey starts with one step: learn, improve, and take action. The virtual world is full of opportunities for those prepared to provide value.</p>
         </article>
 
-        <section id="download" class="download-section">
+        <section id="download" class="card-section">
             <h3>Free Virtual Assistant Starter Checklist</h3>
             <p>Ready to begin your VA journey? Download my beginner checklist to understand the essential steps, skills, tools, and preparation needed to start.</p>
             <br>
-            <a href="va_launch_checklist.pdf" class="btn" style="background: var(--primary-blue); color: #fff;">Get Your Free Checklist</a>
+            <!-- Ensure va_launch_checklist.pdf is in the same directory as index.html -->
+            <a href="va_launch_checklist.pdf" class="btn" style="background: var(--primary-blue); color: #fff;">Download Checklist</a>
         </section>
     </main>
 
@@ -95,13 +87,12 @@
         <h3>Join My Virtual Assistant Growth Updates</h3>
         <p>Subscribe to receive helpful VA tips, career guides, remote work resources, and future updates.</p>
         <br>
-        <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn" style="background: #28a745; color: white;">Join Newsletter</a>
+        <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn" style="background: var(--accent-green); color: white;">Join Newsletter</a>
     </section>
 
     <footer>
         <p>© 2026 Virtual Assistant Career Guide. All Rights Reserved.</p>
-        <br>
-        <nav>
+        <nav style="margin-top: 10px;">
             <a href="#">LinkedIn</a> | <a href="#">Facebook</a> | <a href="#">Website</a>
         </nav>
     </footer>
