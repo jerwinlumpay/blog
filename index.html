@@ -214,14 +214,14 @@
             <h3>About the Blog</h3>
             <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Providing actionable resources, technical skill tutorials, and operations roadmaps designed to help you launch a successful independent freelancing career.</p>
             
-            <!-- Reliable API Lead Magnet Form -->
+            <!-- Lead Magnet Form Integrated with Web3Forms -->
             <div class="lead-magnet">
                 <h4>Free VA Blueprint</h4>
                 <p style="font-size: 0.85rem; color: #444; margin-top: 0.25rem;">Get the 10-Step Launch Checklist delivered instantly.</p>
                 
                 <form id="vaLeadForm">
-                    <!-- Get your free access key from web3forms.com and paste it here -->
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
+                    <!-- Your Form Access Key from image_02adac.png is added here -->
+                    <input type="hidden" name="access_key" value="8b516b53-f5e4-4333-a99f-c40a8d0492c5">
                     <input type="hidden" name="from_name" value="VA Tutorials Blog">
                     <input type="hidden" name="subject" value="New Subscriber for VA Blueprint!">
                     
@@ -249,19 +249,19 @@
 
             const formData = new FormData(form);
 
-            // Submit the email via background API fetch safely
+            // Submit data to Web3Forms API
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: formData
             })
             .then(async (response) => {
                 if (response.status === 200) {
-                    // Update layout message
+                    // Update user feedback text
                     statusText.style.color = "green";
                     statusText.textContent = "Success! Your download is starting.";
                     statusText.style.display = "block";
                     
-                    // Force the immediate local browser file download pipeline
+                    // Force download pipeline for your file
                     const downloadLink = document.createElement('a');
                     downloadLink.href = 'va_launch_checklist.pdf'; 
                     downloadLink.download = 'va_launch_checklist.pdf';
@@ -270,7 +270,7 @@
                     downloadLink.click();
                     document.body.removeChild(downloadLink);
                     
-                    // Clear user input
+                    // Clear out input field
                     emailInput.value = "";
                 } else {
                     throw new Error();
