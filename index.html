@@ -119,30 +119,87 @@
             color: var(--text-light);
         }
 
-        /* SECTION 1: ORIGINAL BLOG (Enhanced) */
-        .section-one {
-            padding: 60px 0;
+        /* Interactive Collapsible Container Style */
+        .interactive-article-wrapper {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 86, 179, 0.06);
+            margin: 30px 0;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        .interactive-article-wrapper.is-open {
+            box-shadow: 0 15px 35px rgba(0, 86, 179, 0.1);
+        }
+
+        /* Expand/Collapse Trigger Header */
+        .article-trigger-header {
+            padding: 30px;
+            background: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: var(--transition-smooth);
+        }
+        .article-trigger-header:hover {
+            background: var(--light-blue);
+        }
+        .header-text-group {
+            padding-right: 20px;
+        }
+        .header-text-group p.preview-text {
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-size: 1.05rem;
+        }
+        .read-more-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        .read-more-indicator .chevron-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        .interactive-article-wrapper.is-open .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Hidden Expandable Container Content */
+        .article-collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
             background: #ffffff;
         }
+        .interactive-article-wrapper.is-open .article-collapsible-content {
+            max-height: 2000px; /* High enough value to accommodate content */
+            transition: max-height 0.8s cubic-bezier(1, 0, 1, 0);
+        }
+        .article-body-padding {
+            padding: 10px 30px 35px 30px;
+            border-top: 1px dashed rgba(0, 86, 179, 0.1);
+        }
+
+        /* SECTION 1: ORIGINAL BLOG (Enhanced) */
+        .section-one {
+            padding: 40px 0 60px;
+            background: var(--light-bg);
+        }
         .original-article {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         .original-article h2 {
-            font-size: 2.2rem;
-            margin-bottom: 24px;
+            font-size: 2rem;
             position: relative;
-            padding-bottom: 12px;
-        }
-        .original-article h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-blue);
-            border-radius: 2px;
         }
         .original-article p {
             font-size: 1.1rem;
@@ -204,7 +261,7 @@
             margin-bottom: 15px;
         }
         
-        /* Grid of Blog Cards */
+        /* Grid of Interactive Blog Cards */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -220,11 +277,13 @@
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            position: relative;
         }
         .skill-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 40px rgba(0, 86, 179, 0.08);
-            border-color: rgba(0, 86, 179, 0.15);
+            border-color: rgba(0, 86, 179, 0.2);
         }
         .card-icon-wrapper {
             width: 55px;
@@ -251,11 +310,32 @@
             margin-bottom: 20px;
             flex-grow: 1;
         }
+        
+        /* Card Action Details Expansion */
+        .card-action-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-top: 10px;
+        }
         .key-points {
             background: var(--light-bg);
-            padding: 16px;
+            padding: 0px 16px;
             border-radius: 8px;
             border-left: 4px solid var(--primary-blue);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        .skill-card.active-card .key-points {
+            max-height: 160px;
+            padding: 16px;
+            opacity: 1;
+            margin-top: 15px;
         }
         .key-points h4 {
             font-size: 0.85rem;
@@ -335,7 +415,7 @@
             padding: 50px; 
             text-align: center; 
             border-radius: 16px; 
-            margin: 40px 0;
+            margin: 40px 0 0;
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(0,0,0,0.04);
         }
@@ -391,7 +471,9 @@
             .hero h1 { font-size: 1.9rem; }
             .hero p { font-size: 1.1rem; }
             .section-header h2 { font-size: 1.8rem; }
-            .original-article h2 { font-size: 1.6rem; }
+            .original-article h2 { font-size: 1.4rem; }
+            .article-trigger-header { padding: 20px; flex-direction: column; align-items: flex-start; gap: 15px; }
+            .read-more-indicator { width: 100%; justify-content: space-between; }
             .card-section, .gradient-cta { padding: 35px 20px; }
             .gradient-cta h3 { font-size: 1.6rem; }
             .skills-grid { grid-template-columns: 1fr; }
@@ -411,21 +493,40 @@
     <!-- SECTION 1: ORIGINAL BLOG PAGE -->
     <section id="section1" class="section-one">
         <div class="container">
-            <article class="original-article">
-                <h2>How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</h2>
-                <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options.</p>
-                <p>A Virtual Assistant (VA) provides remote support to businesses, entrepreneurs, and organizations by handling tasks such as administrative work, customer service, scheduling, email management, research, social media support, and more.</p>
-                <p>To become a successful Virtual Assistant, start by identifying your existing skills. Strong communication, organization, time management, and attention to detail are valuable foundations. You can then improve your skills through online learning, practice using digital tools, and building confidence through small projects.</p>
-                <p>Creating a professional profile, preparing a strong resume, and showcasing your experience are important steps to attract clients. Many businesses look for reliable assistants who can help them save time and improve daily operations.</p>
-                <p>Becoming a Virtual Assistant is not only about working remotely — it is about delivering quality service, building trust, and creating long-term professional relationships.</p>
-                <p>Your journey starts with one step: learn, improve, and take action. The virtual world is full of opportunities for those prepared to provide value.</p>
+            <div class="original-article">
                 
-                <div class="card-section">
-                    <h3>Get Your Free Virtual Assistant Starter Checklist</h3>
-                    <p>Ready to begin your VA journey? Enter your email to join my growth community and get immediate access to the starter checklist.</p>
-                    <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn btn-primary">Enter Email & Get Checklist</a>
+                <!-- Interactive Dropdown Article Container -->
+                <div class="interactive-article-wrapper" id="articleOneWrapper">
+                    <div class="article-trigger-header" onclick="toggleArticle('articleOneWrapper')">
+                        <div class="header-text-group">
+                            <h2>How to Become a Virtual Assistant: A Beginner’s Guide to Starting Your Remote Career</h2>
+                            <p class="preview-text">The way people work is changing. Discover the opportunities, foundations, and essential steps to launch your remote career...</p>
+                        </div>
+                        <div class="read-more-indicator">
+                            <span class="action-label">Read Full Article</span>
+                            <span class="chevron-icon">▼</span>
+                        </div>
+                    </div>
+                    
+                    <div class="article-collapsible-content">
+                        <div class="article-body-padding">
+                            <p>The way people work is changing, and virtual assistance has become one of the fastest-growing opportunities for professionals who want flexibility and global career options.</p>
+                            <p>A Virtual Assistant (VA) provides remote support to businesses, entrepreneurs, and organizations by handling tasks such as administrative work, customer service, scheduling, email management, research, social media support, and more.</p>
+                            <p>To become a successful Virtual Assistant, start by identifying your existing skills. Strong communication, organization, time management, and attention to detail are valuable foundations. You can then improve your skills through online learning, practice using digital tools, and building confidence through small projects.</p>
+                            <p>Creating a professional profile, preparing a strong resume, and showcasing your experience are important steps to attract clients. Many businesses look for reliable assistants who can help them save time and improve daily operations.</p>
+                            <p>Becoming a Virtual Assistant is not only about working remotely — it is about delivering quality service, building trust, and creating long-term professional relationships.</p>
+                            <p>Your journey starts with one step: learn, improve, and take action. The virtual world is full of opportunities for those prepared to provide value.</p>
+                            
+                            <div class="card-section">
+                                <h3>Get Your Free Virtual Assistant Starter Checklist</h3>
+                                <p>Ready to begin your VA journey? Enter your email to join my growth community and get immediate access to the starter checklist.</p>
+                                <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn btn-primary">Enter Email & Get Checklist</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </article>
+
+            </div>
         </div>
     </section>
 
@@ -442,8 +543,8 @@
                     </div>
                     <div class="hero-content-right">
                         <div class="hero-image-container">
-                            <!-- Premium, high speed placeholder image demonstrating optimized modern remote workspace -->
-                            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=600&q=80" alt="Professional Virtual Assistant Workspace showing modern laptop, digital tools, and organized layout" class="hero-image" loading="eager">
+                            <!-- Swapped to local uploaded image asset 'va2' with an fallback configuration -->
+                            <img src="va2" alt="Professional Virtual Assistant Workspace showing modern laptop, digital tools, and organized layout" class="hero-image" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=600&q=80';">
                         </div>
                     </div>
                 </div>
@@ -454,193 +555,218 @@
         <div class="skills-section">
             <div class="container">
                 
-                <div class="section-header">
-                    <h2>Master the 10 Pillars of VA Success</h2>
-                    <p>The remote landscape has shifted. To stay ahead in 2026, building competence across these core business verticals will instantly place you in the top 10% of high-earning virtual applicants.</p>
-                </div>
-
-                <!-- 10 Skills Cards Layout Grid -->
-                <div class="skills-grid">
-                    
-                    <!-- 1. Communication Skills -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">01</span></div>
-                        <h3>Communication Skills</h3>
-                        <p>Clear, precise verbal and written communication is the absolute foundation of successful remote relationships with global corporate leaders.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Active Listening</li>
-                                <li>Proactive Updates</li>
-                                <li>Slack/Teams Etiquette</li>
-                            </ul>
+                <!-- Interactive Dropdown Core Container for Section 2 -->
+                <div class="interactive-article-wrapper is-open" id="articleTwoWrapper">
+                    <div class="article-trigger-header" onclick="toggleArticle('articleTwoWrapper')">
+                        <div class="header-text-group">
+                            <h2>Master the 10 Pillars of VA Success</h2>
+                            <p class="preview-text">The remote landscape has shifted. See the core business skills that will instantly place you in the top 10% of high-earning applicants.</p>
+                        </div>
+                        <div class="read-more-indicator">
+                            <span class="action-label">Toggle View</span>
+                            <span class="chevron-icon">▼</span>
                         </div>
                     </div>
 
-                    <!-- 2. Time Management -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">02</span></div>
-                        <h3>Time Management</h3>
-                        <p>Balancing diverse priorities across multiple client timezones requires highly intentional time blocking and deadline focus.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Time Blocking</li>
-                                <li>Priority Matrix Management</li>
-                                <li>Toggl/Clockify Tracking</li>
-                            </ul>
+                    <div class="article-collapsible-content">
+                        <div class="article-body-padding">
+                            
+                            <!-- 10 Skills Cards Layout Grid -->
+                            <div class="skills-grid">
+                                
+                                <!-- 1. Communication Skills -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">01</span></div>
+                                    <h3>Communication Skills</h3>
+                                    <p>Clear, precise verbal and written communication is the absolute foundation of successful remote relationships with global corporate leaders.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Active Listening</li>
+                                            <li>Proactive Updates</li>
+                                            <li>Slack/Teams Etiquette</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Time Management -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">02</span></div>
+                                    <h3>Time Management</h3>
+                                    <p>Balancing diverse priorities across multiple client timezones requires highly intentional time blocking and deadline focus.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Time Blocking</li>
+                                            <li>Priority Matrix Management</li>
+                                            <li>Toggl/Clockify Tracking</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Organization & Task Management -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">03</span></div>
+                                    <h3>Organization & Task Management</h3>
+                                    <p>Keep projects structured smoothly using modern workflows so deadlines are never missed and tracking stays transparent.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Asana & ClickUp Boards</li>
+                                            <li>File Hierarchy Systems</li>
+                                            <li>Milestone Mapping</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 4. Customer Service -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">04</span></div>
+                                    <h3>Customer Service</h3>
+                                    <p>Nurture your client's consumer relationships by handling standard inquiries with absolute empathy and efficiency.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Intercom/Zendesk Processing</li>
+                                            <li>Empathy-First Responses</li>
+                                            <li>Escalation Strategies</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 5. Email Management -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">05</span></div>
+                                    <h3>Email Management</h3>
+                                    <p>Transform cluttered inboxes into streamlined assets by filtering spam, prioritizing clients, and creating crisp templates.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Inbox Zero Blueprints</li>
+                                            <li>Tagging & Rules Setup</li>
+                                            <li>Drafting Professional Replies</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 6. Research Skills -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">06</span></div>
+                                    <h3>Research Skills</h3>
+                                    <p>Gather accurate data about competitors, prospective industries, and target audiences to empower client decision-making.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Competitor Evaluation</li>
+                                            <li>Lead Source Generation</li>
+                                            <li>Data Verification Cleanliness</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 7. Basic Technology Skills -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">07</span></div>
+                                    <h3>Basic Technology Skills</h3>
+                                    <p>Establish mastery across fundamental business clouds, spreadsheets, presentation applications, and remote systems.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Google Workspace Mastery</li>
+                                            <li>MS Office 365 Operations</li>
+                                            <li>Basic Content Configuration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 8. AI Tools & Automation -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">08</span></div>
+                                    <h3>AI Tools & Automation</h3>
+                                    <p>Accelerate your performance by integrating modern generative assistants, workflow recipes, and smart automation systems.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Advanced Prompting Blueprints</li>
+                                            <li>Zapier & Make Integrations</li>
+                                            <li>AI Schedulers & Copilots</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 9. Problem-Solving Skills -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">09</span></div>
+                                    <h3>Problem-Solving Skills</h3>
+                                    <p>Anticipate structural issues before they compound, offering actionable solutions instead of just highlighting problems.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Root Cause Diagnosis</li>
+                                            <li>Independent Troubleshooting</li>
+                                            <li>Resourceful Decision Making</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 10. Adaptability & Learning -->
+                                <div class="skill-card" onclick="toggleCard(this, event)">
+                                    <div class="card-icon-wrapper"><span class="card-icon">10</span></div>
+                                    <h3>Adaptability & Continuous Learning</h3>
+                                    <p>Rapidly embrace changing software trends, industry demands, and fluid modern client requirements with ease.</p>
+                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
+                                    <div class="key-points">
+                                        <h4>Key Highlights</h4>
+                                        <ul>
+                                            <li>Agile Technical Upskilling</li>
+                                            <li>Feedback-Driven Growth</li>
+                                            <li>Trend Adaptation Velocity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Why VA Skills Matter in 2026 Section (Statistics-style Design) -->
+                            <div class="stats-section">
+                                <div style="text-align: center; max-width: 650px; margin: 0 auto;">
+                                    <h2>Why VA Skills Matter in 2026</h2>
+                                    <p style="color: var(--text-muted); margin-top: 10px;">The landscape of work is shifting away from physical offices. Modern digital clients don't just look for generic assistance; they hire targeted experts who save them hours every week.</p>
+                                </div>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <h3>85%</h3>
+                                        <p>Of SMBs Plan to Increase Freelance/Remote Hiring</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <h3>3x</h3>
+                                        <p>Efficiency Multiplier via AI Tool Competency</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <h3>100%</h3>
+                                        <p>Location Independent & Global Career Longevity</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Downloadable Checklist Gradient CTA Box -->
+                            <div class="gradient-cta">
+                                <h3>Want to know which VA skills you already have?</h3>
+                                <p>Take our quick, zero-cost skills assessment checklist to instantly gauge your current marketplace value and reveal potential earnings gaps.</p>
+                                <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn">Get Your Free Checklist</a>
+                            </div>
+
                         </div>
                     </div>
-
-                    <!-- 3. Organization & Task Management -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">03</span></div>
-                        <h3>Organization & Task Management</h3>
-                        <p>Keep projects structured smoothly using modern workflows so deadlines are never missed and tracking stays transparent.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Asana & ClickUp Boards</li>
-                                <li>File Hierarchy Systems</li>
-                                <li>Milestone Mapping</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 4. Customer Service -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">04</span></div>
-                        <h3>Customer Service</h3>
-                        <p>Nurture your client's consumer relationships by handling standard inquiries with absolute empathy and efficiency.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Intercom/Zendesk Processing</li>
-                                <li>Empathy-First Responses</li>
-                                <li>Escalation Strategies</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 5. Email Management -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">05</span></div>
-                        <h3>Email Management</h3>
-                        <p>Transform cluttered inboxes into streamlined assets by filtering spam, prioritizing clients, and creating crisp templates.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Inbox Zero Blueprints</li>
-                                <li>Tagging & Rules Setup</li>
-                                <li>Drafting Professional Replies</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 6. Research Skills -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">06</span></div>
-                        <h3>Research Skills</h3>
-                        <p>Gather accurate data about competitors, prospective industries, and target audiences to empower client decision-making.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Competitor Evaluation</li>
-                                <li>Lead Source Generation</li>
-                                <li>Data Verification Cleanliness</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 7. Basic Technology Skills -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">07</span></div>
-                        <h3>Basic Technology Skills</h3>
-                        <p>Establish mastery across fundamental business clouds, spreadsheets, presentation applications, and remote systems.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Google Workspace Mastery</li>
-                                <li>MS Office 365 Operations</li>
-                                <li>Basic Content Configuration</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 8. AI Tools & Automation -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">08</span></div>
-                        <h3>AI Tools & Automation</h3>
-                        <p>Accelerate your performance by integrating modern generative assistants, workflow recipes, and smart automation systems.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Advanced Prompting Blueprints</li>
-                                <li>Zapier & Make Integrations</li>
-                                <li>AI Schedulers & Copilots</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 9. Problem-Solving Skills -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">09</span></div>
-                        <h3>Problem-Solving Skills</h3>
-                        <p>Anticipate structural issues before they compound, offering actionable solutions instead of just highlighting problems.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Root Cause Diagnosis</li>
-                                <li>Independent Troubleshooting</li>
-                                <li>Resourceful Decision Making</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 10. Adaptability & Learning -->
-                    <div class="skill-card">
-                        <div class="card-icon-wrapper"><span class="card-icon">10</span></div>
-                        <h3>Adaptability & Continuous Learning</h3>
-                        <p>Rapidly embrace changing software trends, industry demands, and fluid modern client requirements with ease.</p>
-                        <div class="key-points">
-                            <h4>Key Highlights</h4>
-                            <ul>
-                                <li>Agile Technical Upskilling</li>
-                                <li>Feedback-Driven Growth</li>
-                                <li>Trend Adaptation Velocity</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Why VA Skills Matter in 2026 Section (Statistics-style Design) -->
-                <div class="stats-section">
-                    <div style="text-align: center; max-width: 650px; margin: 0 auto;">
-                        <h2>Why VA Skills Matter in 2026</h2>
-                        <p style="color: var(--text-muted); margin-top: 10px;">The landscape of work is shifting away from physical offices. Modern digital clients don't just look for generic assistance; they hire targeted experts who save them hours every week.</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <h3>85%</h3>
-                            <p>Of SMBs Plan to Increase Freelance/Remote Hiring</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>3x</h3>
-                            <p>Efficiency Multiplier via AI Tool Competency</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>100%</h3>
-                            <p>Location Independent & Global Career Longevity</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Downloadable Checklist Gradient CTA Box -->
-                <div class="gradient-cta">
-                    <h3>Want to know which VA skills you already have?</h3>
-                    <p>Take our quick, zero-cost skills assessment checklist to instantly gauge your current marketplace value and reveal potential earnings gaps.</p>
-                    <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn">Get Your Free Checklist</a>
                 </div>
 
             </div>
@@ -658,8 +784,40 @@
         </div>
     </footer>
 
-    <!-- Tab Active State Highlighter Script -->
+    <!-- Interactive Navigation and Layout Scripts -->
     <script>
+        // Smoothly Expand or Collapse Main Article Accordions
+        function toggleArticle(wrapperId) {
+            const wrapper = document.getElementById(wrapperId);
+            const indicatorLabel = wrapper.querySelector('.read-more-indicator .action-label');
+            
+            wrapper.classList.toggle('is-open');
+            
+            if(indicatorLabel) {
+                if(wrapper.classList.contains('is-open')) {
+                    indicatorLabel.textContent = wrapperId === 'articleOneWrapper' ? 'Minimize Article' : 'Hide Pillars';
+                } else {
+                    indicatorLabel.textContent = wrapperId === 'articleOneWrapper' ? 'Read Full Article' : 'Show Pillars';
+                }
+            }
+        }
+
+        // Smoothly Toggle Skill Highlight Details Inside Cards
+        function toggleCard(cardElement, event) {
+            cardElement.classList.toggle('active-card');
+            const hintText = cardElement.querySelector('.card-action-hint span:first-child');
+            const hintIcon = cardElement.querySelector('.card-action-hint span:last-child');
+            
+            if(cardElement.classList.contains('active-card')) {
+                hintText.textContent = 'Hide Highlights';
+                hintIcon.textContent = '📂';
+            } else {
+                hintText.textContent = 'View Key Highlights';
+                hintIcon.textContent = '📁';
+            }
+        }
+
+        // Active Navigation Highlight State Sync on Scroll
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
 
@@ -667,8 +825,7 @@
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 150)) {
+                if (pageYOffset >= (sectionTop - 180)) {
                     current = section.getAttribute('id');
                 }
             });
