@@ -97,10 +97,10 @@
             color: var(--text-light);
         }
 
-        /* Enhanced Thumbnail Layout Design */
+        /* Responsive 3-Column / 2-Column Mesh Grid System */
         .articles-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
             margin-bottom: 60px;
             align-items: start;
@@ -117,15 +117,16 @@
             flex-direction: column;
         }
         
+        /* Fully expand active collapsible viewport grid */
         .interactive-article-wrapper.is-open {
-            grid-column: span 2;
+            grid-column: 1 / -1;
             box-shadow: 0 20px 50px rgba(44, 26, 4, 0.08);
         }
 
-        /* OPTION B: Modified for Vertical Graphics (Aspect ratio adjusted for tall graphics) */
+        /* Thumbnail Top Area */
         .thumbnail-image-box {
             width: 100%;
-            height: 520px; /* Increased height to display portrait/vertical graphics beautifully */
+            height: 280px;
             overflow: hidden;
             position: relative;
             background: var(--secondary-blue);
@@ -134,12 +135,12 @@
         .thumbnail-image-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Keeps graphics safely center-scaled without stretching */
+            object-fit: cover;
             transition: var(--transition-smooth);
         }
 
-        .interactive-article-wrapper:not(.is-open):hover .thumbnail-image-box img {
-            transform: scale(1.03);
+        .interactive-article-wrapper:not(.is-open) .thumbnail-image-box:hover img {
+            transform: scale(1.05);
         }
 
         /* Header Trigger inside Thumbnail */
@@ -164,7 +165,7 @@
         }
 
         .header-text-group h2 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             letter-spacing: -0.5px;
             margin-bottom: 12px;
             transition: var(--transition-smooth);
@@ -233,10 +234,13 @@
         .original-article h3 {
             font-size: 1.75rem;
             margin: 35px 0 15px;
+            border-bottom: 1px solid rgba(139,107,70,0.15);
+            padding-bottom: 8px;
         }
         .original-article h4 {
             font-size: 1.3rem;
             margin: 25px 0 10px;
+            color: var(--secondary-blue);
         }
         .original-article ul, .original-article ol {
             margin-left: 25px;
@@ -246,13 +250,11 @@
         .original-article li {
             margin-bottom: 8px;
         }
-        
-        /* OPTION B: Modified inner content split layout to accommodate tall graphics without clipping */
         .article-split-layout {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             gap: 40px;
-            align-items: start;
+            align-items: flex-start;
             margin-bottom: 40px;
         }
         .article-side-image-container {
@@ -260,15 +262,13 @@
             overflow: hidden;
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(139,107,70,0.1);
-            width: 100%;
-            height: auto; /* Allow auto height calculation for vertical asset alignment */
+            height: 100%;
+            min-height: 350px;
         }
         .article-side-image {
             width: 100%;
-            height: auto; /* Ensures tall/vertical graphics preserve their original layout shape cleanly */
-            max-height: 550px; /* Limits overall page footprint while staying vertical */
+            height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         /* ARTICLE 2 Section Content */
@@ -393,55 +393,6 @@
             font-weight: bold;
         }
 
-        .stats-section {
-            background: #ffffff;
-            padding: 60px 40px;
-            border-radius: 24px;
-            margin: 40px 0 60px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(139,107,70,0.1);
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
-            margin-top: 40px;
-        }
-        .stat-item h3 {
-            font-size: 3rem;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        .stat-item p {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 1rem;
-        }
-
-        .gradient-cta {
-            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--dark-blue) 100%);
-            color: var(--text-light);
-            padding: 60px 40px;
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 20px 45px rgba(44, 26, 4, 0.15);
-        }
-        .gradient-cta h3 {
-            color: var(--text-light);
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-        }
-        .gradient-cta p {
-            font-size: 1.15rem;
-            opacity: 0.85;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         .card-section { 
             background: var(--light-blue); 
             padding: 40px; 
@@ -470,22 +421,6 @@
             border-top: 4px solid var(--primary-blue);
             margin-top: 60px;
         }
-        footer p.footer-tagline {
-            color: #ffffff;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        footer a { 
-            color: rgba(255,255,255,0.7); 
-            margin: 0 14px; 
-            text-decoration: none; 
-            transition: var(--transition-smooth);
-            font-weight: 500;
-        }
-        footer a:hover { 
-            color: var(--primary-blue); 
-        }
 
         /* Responsive Desktop and Mobile Friendliness */
         @media (max-width: 992px) {
@@ -493,16 +428,14 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            .interactive-article-wrapper.is-open {
-                grid-column: span 1;
-            }
             .article-split-layout {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
             .article-side-image-container {
-                max-width: 420px; /* Constrains vertical template width beautifully on tablets */
+                max-width: 500px;
                 margin: 0 auto;
+                min-height: 300px;
             }
             .main-heading { font-size: 2.2rem; }
         }
@@ -510,15 +443,15 @@
         @media (max-width: 600px) {
             body { padding-top: 20px; }
             .main-heading { font-size: 1.8rem; margin-bottom: 30px; }
-            .thumbnail-image-box { height: 380px; } /* Ensures portrait ratios look structured on mobile grids */
+            .thumbnail-image-box { height: 200px; }
             .article-trigger-header { padding: 24px 20px; }
             .interactive-article-wrapper.is-open .article-trigger-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .header-text-group h2 { font-size: 1.4rem; }
             .interactive-article-wrapper.is-open .header-text-group h2 { font-size: 1.6rem; }
             .read-more-indicator { width: 100%; justify-content: space-between; }
             .article-body-padding { padding: 30px 15px; }
-            .card-section, .gradient-cta, .article2-embedded-hero { padding: 35px 20px; }
-            .gradient-cta h3, .article2-embedded-hero h3 { font-size: 1.6rem; }
+            .card-section, .article2-embedded-hero { padding: 35px 20px; }
+            .article2-embedded-hero h3 { font-size: 1.6rem; }
             .skills-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -630,128 +563,8 @@
                                         <h4>Key Highlights</h4>
                                         <ul>
                                             <li>Time Blocking</li>
-                                            <li>Priority Matrix Management</li>
-                                            <li>Toggl/Clockify Tracking</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">03</span></div>
-                                    <h3>Organization & Task Management</h3>
-                                    <p>Keep projects structured smoothly using modern workflows so deadlines are never missed and tracking stays transparent.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Asana & ClickUp Boards</li>
-                                            <li>File Hierarchy Systems</li>
-                                            <li>Milestone Mapping</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">04</span></div>
-                                    <h3>Customer Service</h3>
-                                    <p>Nurture your client's consumer relationships by handling standard inquiries with absolute empathy and efficiency.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Intercom/Zendesk Processing</li>
-                                            <li>Empathy-First Responses</li>
-                                            <li>Escalation Strategies</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">05</span></div>
-                                    <h3>Email Management</h3>
-                                    <p>Transform cluttered inboxes into streamlined assets by filtering spam, prioritizing clients, and creating crisp templates.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Inbox Zero Blueprints</li>
-                                            <li>Tagging & Rules Setup</li>
-                                            <li>Drafting Professional Replies</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">06</span></div>
-                                    <h3>Research Skills</h3>
-                                    <p>Gather accurate data about competitors, prospective industries, and target audiences to empower client decision-making.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Competitor Evaluation</li>
-                                            <li>Lead Source Generation</li>
-                                            <li>Data Verification Cleanliness</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">07</span></div>
-                                    <h3>Basic Technology Skills</h3>
-                                    <p>Establish mastery across fundamental business clouds, spreadsheets, presentation applications, and remote systems.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Google Workspace Mastery</li>
-                                            <li>MS Office 365 Operations</li>
-                                            <li>Basic Content Configuration</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">08</span></div>
-                                    <h3>AI Tools & Automation</h3>
-                                    <p>Accelerate your performance by integrating modern generative assistants, workflow recipes, and smart automation systems.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Advanced Prompting Blueprints</li>
-                                            <li>Zapier & Make Integrations</li>
-                                            <li>AI Schedulers & Copilots</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">09</span></div>
-                                    <h3>Problem-Solving Skills</h3>
-                                    <p>Anticipate structural issues before they compound, offering actionable solutions instead of just highlighting problems.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Root Cause Diagnosis</li>
-                                            <li>Independent Troubleshooting</li>
-                                            <li>Resourceful Decision Making</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="skill-card" onclick="toggleCard(this, event)">
-                                    <div class="card-icon-wrapper"><span class="card-icon">10</span></div>
-                                    <h3>Continuous Learning</h3>
-                                    <p>Commit to dynamic skill refinement, adapting actively to emerging remote marketplace platforms and technologies.</p>
-                                    <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
-                                    <div class="key-points">
-                                        <h4>Key Highlights</h4>
-                                        <ul>
-                                            <li>Industry Trend Tracking</li>
-                                            <li>Software Certifications</li>
-                                            <li>Skill Stack Iteration</li>
+                                            <li>Priority Mapping</li>
+                                            <li>Deadline Tracking</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -759,30 +572,143 @@
                             </div>
                         </div>
 
-                        <div class="stats-section">
-                            <h2 style="text-align: center;">The Virtual Assistant Economy</h2>
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <h3>2026</h3>
-                                    <p>The Future of Work</p>
-                                </div>
-                                <div class="stat-item">
-                                    <h3>100%</h3>
-                                    <p>Remote Flexibility</p>
-                                </div>
-                                <div class="stat-item">
-                                    <h3>10+</h3>
-                                    <p>Core Skill Pillars</p>
-                                </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARTICLE 3 THUMBNAIL -->
+            <div class="interactive-article-wrapper" id="articleThreeWrapper">
+                <div class="thumbnail-image-box" onclick="toggleArticle('articleThreeWrapper')">
+                    <img src="va3" alt="How to Start as a Virtual Assistant With No Experience Beginner's Guide Workspace" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80';">
+                </div>
+
+                <div class="article-trigger-header" onclick="toggleArticle('articleThreeWrapper')">
+                    <div class="header-text-group">
+                        <h2>How to Start as a Virtual Assistant With No Experience (Beginner’s Guide)</h2>
+                        <p class="preview-text">Starting a career as a Virtual Assistant can feel overwhelming. Learn how to leverage your skills and land clients step by step...</p>
+                    </div>
+                    <div class="read-more-indicator">
+                        <span class="action-label">Read More</span>
+                        <span class="chevron-icon">▼</span>
+                    </div>
+                </div>
+
+                <div class="article-collapsible-content">
+                    <div class="article-body-padding">
+                        <div class="original-article">
+                            <p>Starting a career as a Virtual Assistant (VA) can feel overwhelming, especially when you see job posts asking for “experience” and “expert skills.” Many beginners think they need years of office work, advanced technical knowledge, or a long client history before they can start.[cite: 8]</p>
+                            <p>The reality is different.[cite: 8]</p>
+                            <p>Many successful Virtual Assistants started with no professional VA experience. They learned the skills, built confidence, created simple portfolios, and landed their first clients step by step.[cite: 8]</p>
+                            <p>If you are willing to learn, stay organized, and provide value, you can start your VA journey from zero.[cite: 8]</p>
+
+                            <h3>Can You Become a Virtual Assistant Without Experience?</h3>
+                            <p>Yes, you can become a Virtual Assistant without previous VA experience.[cite: 8]</p>
+                            <p>Clients are not only looking for someone with a long resume. They are looking for someone reliable, organized, responsive, and capable of helping them save time.[cite: 8]</p>
+                            <p>A Virtual Assistant supports businesses and entrepreneurs with tasks such as:[cite: 8]</p>
+                            <ul>
+                                <li>Managing emails and calendars</li>
+                                <li>Data entry and research</li>
+                                <li>Customer support</li>
+                                <li>Social media assistance</li>
+                                <li>Creating documents and reports</li>
+                                <li>Scheduling appointments</li>
+                                <li>Administrative tasks</li>
+                                <li>Online organization</li>
+                            </ul>
+                            <p>Many of these skills are already part of everyday life.[cite: 8]</p>
+                            <p>The key is not having “VA experience” — the key is showing that you can solve problems and handle responsibilities.[cite: 8]</p>
+
+                            <h3>Transferable Skills You Already Have</h3>
+                            <p>You may already have skills that businesses need.[cite: 8]</p>
+
+                            <h4>1. Communication Skills</h4>
+                            <p>If you can write clear messages, respond professionally, and communicate effectively, you already have an important VA skill.[cite: 8]</p>
+                            <p>Virtual Assistants communicate with:[cite: 8]</p>
+                            <ul>
+                                <li>Clients</li>
+                                <li>Customers</li>
+                                <li>Team members</li>
+                                <li>Suppliers</li>
+                            </ul>
+                            <p>Professional communication builds trust.[cite: 8]</p>
+
+                            <h4>2. Organization Skills</h4>
+                            <p>Do you manage your schedule, appointments, files, or personal tasks? That is already a form of organization.[cite: 8]</p>
+                            <p>A good VA knows how to:[cite: 8]</p>
+                            <ul>
+                                <li>Keep files organized</li>
+                                <li>Track deadlines</li>
+                                <li>Manage multiple tasks</li>
+                                <li>Prioritize important work</li>
+                            </ul>
+
+                            <h4>3. Time Management</h4>
+                            <p>Businesses hire VAs because they need help saving time.[cite: 8]</p>
+                            <p>If you can manage your own workload and complete tasks on schedule, you can develop this into a professional skill.[cite: 8]</p>
+
+                            <h4>4. Problem-Solving Ability</h4>
+                            <p>Every client will have challenges.[cite: 8]</p>
+                            <p>A valuable VA does not only wait for instructions — they find solutions.[cite: 8]</p>
+                            <p>Examples:[cite: 8]</p>
+                            <ul>
+                                <li>Finding better ways to organize files</li>
+                                <li>Researching information</li>
+                                <li>Improving workflows</li>
+                            </ul>
+
+                            <h3>Tools Every Beginner Virtual Assistant Should Learn</h3>
+                            <p>You do not need to master every tool immediately. Start with the basics.[cite: 8]</p>
+
+                            <h4>Communication Tools</h4>
+                            <p>Learn how to use: Gmail, Google Meet, Zoom, Slack. These tools help you communicate with clients and teams.[cite: 8]</p>
+
+                            <h4>Productivity Tools</h4>
+                            <p>Important beginner tools: Google Drive, Google Docs, Google Sheets, Google Calendar, Microsoft Office. These are commonly used in administrative work.[cite: 8]</p>
+
+                            <h4>Project Management Tools</h4>
+                            <p>Many companies use: Trello, Asana, ClickUp. These help organize tasks and deadlines.[cite: 8]</p>
+
+                            <h4>Design Tools</h4>
+                            <p>Basic design knowledge can increase your opportunities. Try learning Canva. You can create social media graphics, presentations, and simple marketing materials.[cite: 8]</p>
+
+                            <h3>How to Create Your First Virtual Assistant Portfolio</h3>
+                            <p>A common beginner mistake is waiting for a client before creating a portfolio. You can create a portfolio without previous clients. Your portfolio should show what you can do.[cite: 8]</p>
+                            <p>Include:[cite: 8]</p>
+                            <ol>
+                                <li><strong>Introduction:</strong> “Hi, I’m a Virtual Assistant helping businesses with administrative support, organization, and online tasks.”[cite: 8]</li>
+                                <li><strong>Your Skills:</strong> List services you can provide (Email management, Data entry, Calendar management, Research, Document formatting, Customer support).[cite: 8]</li>
+                                <li><strong>Sample Work:</strong> Create practice examples (A sample spreadsheet, email template, calendar system, or social media post).[cite: 8]</li>
+                                <li><strong>Professional Profile:</strong> Add your photo, contact details, short introduction, and services offered.[cite: 8]</li>
+                            </ol>
+                            <p>A simple portfolio is better than having none.[cite: 8]</p>
+
+                            <h3>Finding Your First Virtual Assistant Client</h3>
+                            <p>Your first client may not come instantly, but consistency matters. Here are places beginners can start:[cite: 8]</p>
+                            <h4>Freelance Platforms</h4>
+                            <p>Create profiles on Upwork, Fiverr, and Freelancer. Focus on building your reputation first.[cite: 8]</p>
+                            <h4>Networking</h4>
+                            <p>Tell people what you do. Your first client could come from friends, previous coworkers, business owners, or online communities.[cite: 8]</p>
+                            <h4>Apply Strategically</h4>
+                            <p>Do not send generic applications. Read the job post carefully, understand the client’s problem, and explain how you can help. Clients want solutions, not just a list of skills.[cite: 8]</p>
+
+                            <h3>Common Mistakes Beginner Virtual Assistants Make</h3>
+                            <ol>
+                                <li><strong>Trying to Learn Everything at Once:</strong> You do not need to become an expert in every tool. Start with a few useful skills and improve over time.[cite: 8]</li>
+                                <li><strong>Waiting Until You Feel “Ready”:</strong> Many beginners delay starting because they think they need perfect skills. The best way to improve is through practice.[cite: 8]</li>
+                                <li><strong>Offering Too Many Services:</strong> Avoid saying: “I can do everything.” Instead, focus on a clear service. Example: “I help small businesses manage administrative tasks and online organization.”[cite: 8]</li>
+                                <li><strong>Ignoring Professionalism:</strong> Small details matter. Respond on time, meet deadlines, communicate clearly, and stay organized. Reliability creates long-term clients.[cite: 8]</li>
+                            </ol>
+
+                            <h3>Start Your Virtual Assistant Journey Today</h3>
+                            <p>Becoming a Virtual Assistant is not about having the perfect background. It is about building useful skills, creating proof of your ability, and taking consistent action.[cite: 8]</p>
+                            <p>Start small. Learn one skill. Create one sample project. Apply for one opportunity. Every experienced VA started as a beginner. Your remote career can start with the first step.[cite: 8]</p>
+                            
+                            <div class="card-section">
+                                <h3>Ready to start?</h3>
+                                <p>Download my free Virtual Assistant Beginner Checklist and learn the first steps you need to build your VA career.[cite: 8]</p>
+                                <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn btn-primary">Download Free Checklist</a>
                             </div>
                         </div>
-
-                        <div class="gradient-cta">
-                            <h3>Ready to Fast-Track Your VA Career?</h3>
-                            <p>Download the full 2026 Strategy Guide and master the digital ecosystem with actionable milestones.</p>
-                            <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn">Get Free Guide Now</a>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -792,45 +718,34 @@
 
     <footer>
         <p class="footer-tagline">Virtual Assistant Insights Hub</p>
-        <p>&copy; 2026 Career Growth Portal. All rights reserved.</p>
-        <div style="margin-top: 15px;">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact Support</a>
-        </div>
+        <p>&copy; 2026 Remote Insights Panel. All rights reserved.</p>
     </footer>
 
     <script>
         function toggleArticle(wrapperId) {
-            const wrapper = document.getElementById(wrapperId);
-            const allVAs = document.querySelectorAll('.interactive-article-wrapper');
-            
-            allVAs.forEach(el => {
-                if(el.id !== wrapperId) {
-                    el.classList.remove('is-open');
-                }
+            const allWrappers = document.querySelectorAll('.interactive-article-wrapper');
+            const targetWrapper = document.getElementById(wrapperId);
+            const isTargetOpen = targetWrapper.classList.contains('is-open');
+
+            allWrappers.forEach(wrapper => {
+                wrapper.classList.remove('is-open');
+                const label = wrapper.querySelector('.action-label');
+                if (label) label.textContent = 'Read More';
             });
-            
-            wrapper.classList.toggle('is-open');
-            
-            setTimeout(() => {
-                if(wrapper.classList.contains('is-open')) {
-                    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 300);
+
+            if (!isTargetOpen) {
+                targetWrapper.classList.add('is-open');
+                const label = targetWrapper.querySelector('.action-label');
+                if (label) label.textContent = 'Close Article';
+                
+                setTimeout(() => {
+                    targetWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            }
         }
 
         function toggleCard(cardElement, event) {
-            event.stopPropagation();
-            const grid = cardElement.closest('.skills-grid');
-            const allCards = grid.querySelectorAll('.skill-card');
-            
-            allCards.forEach(card => {
-                if(card !== cardElement) {
-                    card.classList.remove('active-card');
-                }
-            });
-            
+            event.stopPropagation(); 
             cardElement.classList.toggle('active-card');
         }
     </script>
