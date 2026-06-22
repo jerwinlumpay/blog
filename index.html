@@ -51,6 +51,53 @@
             padding: 0 24px; 
         }
 
+        /* Navigation Styles */
+        .top-nav {
+            padding: 20px 0;
+            background: rgba(253, 250, 244, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139,107,70,0.1);
+        }
+        .nav-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand {
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-size: 1.2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+        .nav-link:hover { color: var(--primary-blue); }
+        .btn-nav {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .btn-nav:hover { background: var(--secondary-blue); color: white; }
+
+        @media (max-width: 600px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+        }
+
         /* Global Typography & Elements */
         h1, h2, h3, h4 {
             color: var(--dark-blue);
@@ -458,12 +505,21 @@
 </head>
 <body>
 
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">Virtual Assistant Hub</div>
+            <div class="nav-links">
+                <a href="https://about.jerwinlumpay.com/" class="nav-link">About Jerwin</a>
+                <a href="https://jobs.jerwinlumpay.com/" class="nav-link btn-nav">Job Menu</a>
+            </div>
+        </div>
+    </nav>
+
     <main class="container">
         <h1 class="main-heading">Virtual Assistant Insights Hub</h1>
 
         <div class="articles-grid">
             
-            <!-- ARTICLE 1 THUMBNAIL -->
             <div class="interactive-article-wrapper" id="articleOneWrapper">
                 <div class="thumbnail-image-box" onclick="toggleArticle('articleOneWrapper')">
                     <img src="va1" alt="How to become a Virtual Assistant Workspace" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80';">
@@ -510,7 +566,6 @@
                 </div>
             </div>
 
-            <!-- ARTICLE 2 THUMBNAIL -->
             <div class="interactive-article-wrapper" id="articleTwoWrapper">
                 <div class="thumbnail-image-box" onclick="toggleArticle('articleTwoWrapper')">
                     <img src="va2" alt="Top 10 Skills Every Virtual Assistant Needs to Succeed in 2026 Workspace" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=600&q=80';">
@@ -576,7 +631,6 @@
                 </div>
             </div>
 
-            <!-- ARTICLE 3 THUMBNAIL -->
             <div class="interactive-article-wrapper" id="articleThreeWrapper">
                 <div class="thumbnail-image-box" onclick="toggleArticle('articleThreeWrapper')">
                     <img src="va3" alt="How to Start as a Virtual Assistant With No Experience Beginner's Guide Workspace" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80';">
@@ -596,15 +650,15 @@
                 <div class="article-collapsible-content">
                     <div class="article-body-padding">
                         <div class="original-article">
-                            <p>Starting a career as a Virtual Assistant (VA) can feel overwhelming, especially when you see job posts asking for “experience” and “expert skills.” Many beginners think they need years of office work, advanced technical knowledge, or a long client history before they can start.[cite: 8]</p>
-                            <p>The reality is different.[cite: 8]</p>
-                            <p>Many successful Virtual Assistants started with no professional VA experience. They learned the skills, built confidence, created simple portfolios, and landed their first clients step by step.[cite: 8]</p>
-                            <p>If you are willing to learn, stay organized, and provide value, you can start your VA journey from zero.[cite: 8]</p>
+                            <p>Starting a career as a Virtual Assistant (VA) can feel overwhelming, especially when you see job posts asking for “experience” and “expert skills.” Many beginners think they need years of office work, advanced technical knowledge, or a long client history before they can start.</p>
+                            <p>The reality is different.</p>
+                            <p>Many successful Virtual Assistants started with no professional VA experience. They learned the skills, built confidence, created simple portfolios, and landed their first clients step by step.</p>
+                            <p>If you are willing to learn, stay organized, and provide value, you can start your VA journey from zero.</p>
 
                             <h3>Can You Become a Virtual Assistant Without Experience?</h3>
-                            <p>Yes, you can become a Virtual Assistant without previous VA experience.[cite: 8]</p>
-                            <p>Clients are not only looking for someone with a long resume. They are looking for someone reliable, organized, responsive, and capable of helping them save time.[cite: 8]</p>
-                            <p>A Virtual Assistant supports businesses and entrepreneurs with tasks such as:[cite: 8]</p>
+                            <p>Yes, you can become a Virtual Assistant without previous VA experience.</p>
+                            <p>Clients are not only looking for someone with a long resume. They are looking for someone reliable, organized, responsive, and capable of helping them save time.</p>
+                            <p>A Virtual Assistant supports businesses and entrepreneurs with tasks such as:</p>
                             <ul>
                                 <li>Managing emails and calendars</li>
                                 <li>Data entry and research</li>
@@ -615,26 +669,26 @@
                                 <li>Administrative tasks</li>
                                 <li>Online organization</li>
                             </ul>
-                            <p>Many of these skills are already part of everyday life.[cite: 8]</p>
-                            <p>The key is not having “VA experience” — the key is showing that you can solve problems and handle responsibilities.[cite: 8]</p>
+                            <p>Many of these skills are already part of everyday life.</p>
+                            <p>The key is not having “VA experience” — the key is showing that you can solve problems and handle responsibilities.</p>
 
                             <h3>Transferable Skills You Already Have</h3>
-                            <p>You may already have skills that businesses need.[cite: 8]</p>
+                            <p>You may already have skills that businesses need.</p>
 
                             <h4>1. Communication Skills</h4>
-                            <p>If you can write clear messages, respond professionally, and communicate effectively, you already have an important VA skill.[cite: 8]</p>
-                            <p>Virtual Assistants communicate with:[cite: 8]</p>
+                            <p>If you can write clear messages, respond professionally, and communicate effectively, you already have an important VA skill.</p>
+                            <p>Virtual Assistants communicate with:</p>
                             <ul>
                                 <li>Clients</li>
                                 <li>Customers</li>
                                 <li>Team members</li>
                                 <li>Suppliers</li>
                             </ul>
-                            <p>Professional communication builds trust.[cite: 8]</p>
+                            <p>Professional communication builds trust.</p>
 
                             <h4>2. Organization Skills</h4>
-                            <p>Do you manage your schedule, appointments, files, or personal tasks? That is already a form of organization.[cite: 8]</p>
-                            <p>A good VA knows how to:[cite: 8]</p>
+                            <p>Do you manage your schedule, appointments, files, or personal tasks? That is already a form of organization.</p>
+                            <p>A good VA knows how to:</p>
                             <ul>
                                 <li>Keep files organized</li>
                                 <li>Track deadlines</li>
@@ -643,13 +697,13 @@
                             </ul>
 
                             <h4>3. Time Management</h4>
-                            <p>Businesses hire VAs because they need help saving time.[cite: 8]</p>
-                            <p>If you can manage your own workload and complete tasks on schedule, you can develop this into a professional skill.[cite: 8]</p>
+                            <p>Businesses hire VAs because they need help saving time.</p>
+                            <p>If you can manage your own workload and complete tasks on schedule, you can develop this into a professional skill.</p>
 
                             <h4>4. Problem-Solving Ability</h4>
-                            <p>Every client will have challenges.[cite: 8]</p>
-                            <p>A valuable VA does not only wait for instructions — they find solutions.[cite: 8]</p>
-                            <p>Examples:[cite: 8]</p>
+                            <p>Every client will have challenges.</p>
+                            <p>A valuable VA does not only wait for instructions — they find solutions.</p>
+                            <p>Examples:</p>
                             <ul>
                                 <li>Finding better ways to organize files</li>
                                 <li>Researching information</li>
@@ -657,55 +711,55 @@
                             </ul>
 
                             <h3>Tools Every Beginner Virtual Assistant Should Learn</h3>
-                            <p>You do not need to master every tool immediately. Start with the basics.[cite: 8]</p>
+                            <p>You do not need to master every tool immediately. Start with the basics.</p>
 
                             <h4>Communication Tools</h4>
-                            <p>Learn how to use: Gmail, Google Meet, Zoom, Slack. These tools help you communicate with clients and teams.[cite: 8]</p>
+                            <p>Learn how to use: Gmail, Google Meet, Zoom, Slack. These tools help you communicate with clients and teams.</p>
 
                             <h4>Productivity Tools</h4>
-                            <p>Important beginner tools: Google Drive, Google Docs, Google Sheets, Google Calendar, Microsoft Office. These are commonly used in administrative work.[cite: 8]</p>
+                            <p>Important beginner tools: Google Drive, Google Docs, Google Sheets, Google Calendar, Microsoft Office. These are commonly used in administrative work.</p>
 
                             <h4>Project Management Tools</h4>
-                            <p>Many companies use: Trello, Asana, ClickUp. These help organize tasks and deadlines.[cite: 8]</p>
+                            <p>Many companies use: Trello, Asana, ClickUp. These help organize tasks and deadlines.</p>
 
                             <h4>Design Tools</h4>
-                            <p>Basic design knowledge can increase your opportunities. Try learning Canva. You can create social media graphics, presentations, and simple marketing materials.[cite: 8]</p>
+                            <p>Basic design knowledge can increase your opportunities. Try learning Canva. You can create social media graphics, presentations, and simple marketing materials.</p>
 
                             <h3>How to Create Your First Virtual Assistant Portfolio</h3>
-                            <p>A common beginner mistake is waiting for a client before creating a portfolio. You can create a portfolio without previous clients. Your portfolio should show what you can do.[cite: 8]</p>
-                            <p>Include:[cite: 8]</p>
+                            <p>A common beginner mistake is waiting for a client before creating a portfolio. You can create a portfolio without previous clients. Your portfolio should show what you can do.</p>
+                            <p>Include:</p>
                             <ol>
-                                <li><strong>Introduction:</strong> “Hi, I’m a Virtual Assistant helping businesses with administrative support, organization, and online tasks.”[cite: 8]</li>
-                                <li><strong>Your Skills:</strong> List services you can provide (Email management, Data entry, Calendar management, Research, Document formatting, Customer support).[cite: 8]</li>
-                                <li><strong>Sample Work:</strong> Create practice examples (A sample spreadsheet, email template, calendar system, or social media post).[cite: 8]</li>
-                                <li><strong>Professional Profile:</strong> Add your photo, contact details, short introduction, and services offered.[cite: 8]</li>
+                                <li><strong>Introduction:</strong> “Hi, I’m a Virtual Assistant helping businesses with administrative support, organization, and online tasks.”</li>
+                                <li><strong>Your Skills:</strong> List services you can provide (Email management, Data entry, Calendar management, Research, Document formatting, Customer support).</li>
+                                <li><strong>Sample Work:</strong> Create practice examples (A sample spreadsheet, email template, calendar system, or social media post).</li>
+                                <li><strong>Professional Profile:</strong> Add your photo, contact details, short introduction, and services offered.</li>
                             </ol>
-                            <p>A simple portfolio is better than having none.[cite: 8]</p>
+                            <p>A simple portfolio is better than having none.</p>
 
                             <h3>Finding Your First Virtual Assistant Client</h3>
-                            <p>Your first client may not come instantly, but consistency matters. Here are places beginners can start:[cite: 8]</p>
+                            <p>Your first client may not come instantly, but consistency matters. Here are places beginners can start:</p>
                             <h4>Freelance Platforms</h4>
-                            <p>Create profiles on Upwork, Fiverr, and Freelancer. Focus on building your reputation first.[cite: 8]</p>
+                            <p>Create profiles on Upwork, Fiverr, and Freelancer. Focus on building your reputation first.</p>
                             <h4>Networking</h4>
-                            <p>Tell people what you do. Your first client could come from friends, previous coworkers, business owners, or online communities.[cite: 8]</p>
+                            <p>Tell people what you do. Your first client could come from friends, previous coworkers, business owners, or online communities.</p>
                             <h4>Apply Strategically</h4>
-                            <p>Do not send generic applications. Read the job post carefully, understand the client’s problem, and explain how you can help. Clients want solutions, not just a list of skills.[cite: 8]</p>
+                            <p>Do not send generic applications. Read the job post carefully, understand the client’s problem, and explain how you can help. Clients want solutions, not just a list of skills.</p>
 
                             <h3>Common Mistakes Beginner Virtual Assistants Make</h3>
                             <ol>
-                                <li><strong>Trying to Learn Everything at Once:</strong> You do not need to become an expert in every tool. Start with a few useful skills and improve over time.[cite: 8]</li>
-                                <li><strong>Waiting Until You Feel “Ready”:</strong> Many beginners delay starting because they think they need perfect skills. The best way to improve is through practice.[cite: 8]</li>
-                                <li><strong>Offering Too Many Services:</strong> Avoid saying: “I can do everything.” Instead, focus on a clear service. Example: “I help small businesses manage administrative tasks and online organization.”[cite: 8]</li>
-                                <li><strong>Ignoring Professionalism:</strong> Small details matter. Respond on time, meet deadlines, communicate clearly, and stay organized. Reliability creates long-term clients.[cite: 8]</li>
+                                <li><strong>Trying to Learn Everything at Once:</strong> You do not need to become an expert in every tool. Start with a few useful skills and improve over time.</li>
+                                <li><strong>Waiting Until You Feel “Ready”:</strong> Many beginners delay starting because they think they need perfect skills. The best way to improve is through practice.</li>
+                                <li><strong>Offering Too Many Services:</strong> Avoid saying: “I can do everything.” Instead, focus on a clear service. Example: “I help small businesses manage administrative tasks and online organization.”</li>
+                                <li><strong>Ignoring Professionalism:</strong> Small details matter. Respond on time, meet deadlines, communicate clearly, and stay organized. Reliability creates long-term clients.</li>
                             </ol>
 
                             <h3>Start Your Virtual Assistant Journey Today</h3>
-                            <p>Becoming a Virtual Assistant is not about having the perfect background. It is about building useful skills, creating proof of your ability, and taking consistent action.[cite: 8]</p>
-                            <p>Start small. Learn one skill. Create one sample project. Apply for one opportunity. Every experienced VA started as a beginner. Your remote career can start with the first step.[cite: 8]</p>
+                            <p>Becoming a Virtual Assistant is not about having the perfect background. It is about building useful skills, creating proof of your ability, and taking consistent action.</p>
+                            <p>Start small. Learn one skill. Create one sample project. Apply for one opportunity. Every experienced VA started as a beginner. Your remote career can start with the first step.</p>
                             
                             <div class="card-section">
                                 <h3>Ready to start?</h3>
-                                <p>Download my free Virtual Assistant Beginner Checklist and learn the first steps you need to build your VA career.[cite: 8]</p>
+                                <p>Download my free Virtual Assistant Beginner Checklist and learn the first steps you need to build your VA career.</p>
                                 <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn btn-primary">Download Free Checklist</a>
                             </div>
                         </div>
