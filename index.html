@@ -122,10 +122,10 @@
             box-shadow: 0 20px 50px rgba(44, 26, 4, 0.08);
         }
 
-        /* Thumbnail Top Area */
+        /* OPTION B: Modified for Vertical Graphics (Aspect ratio adjusted for tall graphics) */
         .thumbnail-image-box {
             width: 100%;
-            height: 280px;
+            height: 520px; /* Increased height to display portrait/vertical graphics beautifully */
             overflow: hidden;
             position: relative;
             background: var(--secondary-blue);
@@ -134,12 +134,12 @@
         .thumbnail-image-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Keeps graphics safely center-scaled without stretching */
             transition: var(--transition-smooth);
         }
 
         .interactive-article-wrapper:not(.is-open):hover .thumbnail-image-box img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         /* Header Trigger inside Thumbnail */
@@ -246,11 +246,13 @@
         .original-article li {
             margin-bottom: 8px;
         }
+        
+        /* OPTION B: Modified inner content split layout to accommodate tall graphics without clipping */
         .article-split-layout {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             gap: 40px;
-            align-items: flex-start;
+            align-items: start;
             margin-bottom: 40px;
         }
         .article-side-image-container {
@@ -258,13 +260,15 @@
             overflow: hidden;
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(139,107,70,0.1);
-            height: 100%;
-            min-height: 350px;
+            width: 100%;
+            height: auto; /* Allow auto height calculation for vertical asset alignment */
         }
         .article-side-image {
             width: 100%;
-            height: 100%;
+            height: auto; /* Ensures tall/vertical graphics preserve their original layout shape cleanly */
+            max-height: 550px; /* Limits overall page footprint while staying vertical */
             object-fit: cover;
+            display: block;
         }
 
         /* ARTICLE 2 Section Content */
@@ -497,9 +501,8 @@
                 text-align: center;
             }
             .article-side-image-container {
-                max-width: 500px;
+                max-width: 420px; /* Constrains vertical template width beautifully on tablets */
                 margin: 0 auto;
-                min-height: 300px;
             }
             .main-heading { font-size: 2.2rem; }
         }
@@ -507,7 +510,7 @@
         @media (max-width: 600px) {
             body { padding-top: 20px; }
             .main-heading { font-size: 1.8rem; margin-bottom: 30px; }
-            .thumbnail-image-box { height: 200px; }
+            .thumbnail-image-box { height: 380px; } /* Ensures portrait ratios look structured on mobile grids */
             .article-trigger-header { padding: 24px 20px; }
             .interactive-article-wrapper.is-open .article-trigger-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .header-text-group h2 { font-size: 1.4rem; }
@@ -740,297 +743,46 @@
 
                                 <div class="skill-card" onclick="toggleCard(this, event)">
                                     <div class="card-icon-wrapper"><span class="card-icon">10</span></div>
-                                    <h3>Adaptability & Continuous Learning</h3>
-                                    <p>Rapidly embrace changing software trends, industry demands, and fluid modern client requirements with ease.</p>
+                                    <h3>Continuous Learning</h3>
+                                    <p>Commit to dynamic skill refinement, adapting actively to emerging remote marketplace platforms and technologies.</p>
                                     <div class="card-action-hint"><span>View Key Highlights</span><span>📂</span></div>
                                     <div class="key-points">
                                         <h4>Key Highlights</h4>
                                         <ul>
-                                            <li>Agile Technical Upskilling</li>
-                                            <li>Feedback-Driven Growth</li>
-                                            <li>Trend Adaptation Velocity</li>
+                                            <li>Industry Trend Tracking</li>
+                                            <li>Software Certifications</li>
+                                            <li>Skill Stack Iteration</li>
                                         </ul>
                                     </div>
                                 </div>
 
                             </div>
+                        </div>
 
-                            <div class="stats-section">
-                                <div style="text-align: center; max-width: 650px; margin: 0 auto;">
-                                    <h2>Why VA Skills Matter in 2026</h2>
-                                    <p style="color: var(--text-muted); margin-top: 12px;">The landscape of work is shifting away from physical offices. Modern digital clients don't just look for generic assistance; they hire targeted experts who save them hours every week.</p>
+                        <div class="stats-section">
+                            <h2 style="text-align: center;">The Virtual Assistant Economy</h2>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <h3>2026</h3>
+                                    <p>The Future of Work</p>
                                 </div>
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <h3>85%</h3>
-                                        <p>Of SMBs Plan to Increase Freelance/Remote Hiring</p>
-                                    </div>
-                                    <div class="stat-item">
-                                        <h3>3x</h3>
-                                        <p>Efficiency Multiplier via AI Tool Competency</p>
-                                    </div>
-                                    <div class="stat-item">
-                                        <h3>100%</h3>
-                                        <p>Location Independent & Global Career Longevity</p>
-                                    </div>
+                                <div class="stat-item">
+                                    <h3>100%</h3>
+                                    <p>Remote Flexibility</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h3>10+</h3>
+                                    <p>Core Skill Pillars</p>
                                 </div>
                             </div>
-
-                            <div class="gradient-cta">
-                                <h3>Want to know which VA skills you already have?</h3>
-                                <p>Take our quick, zero-cost skills assessment checklist to instantly gauge your current marketplace value and reveal potential earnings gaps.</p>
-                                <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn">Get Your Free Checklist</a>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ARTICLE 3 THUMBNAIL -->
-            <div class="interactive-article-wrapper" id="articleThreeWrapper">
-                <div class="thumbnail-image-box" onclick="toggleArticle('articleThreeWrapper')">
-                    <img src="va3" alt="How to Start as a Virtual Assistant With No Experience (Beginner’s Guide)" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80';">
-                </div>
-
-                <div class="article-trigger-header" onclick="toggleArticle('articleThreeWrapper')">
-                    <div class="header-text-group">
-                        <h2>How to Start as a Virtual Assistant With No Experience (Beginner’s Guide)</h2>
-                        <p class="preview-text">Starting a career as a Virtual Assistant (VA) can feel overwhelming, especially when you see job posts asking for “experience”...</p>
-                    </div>
-                    <div class="read-more-indicator">
-                        <span class="action-label">Read More</span>
-                        <span class="chevron-icon">▼</span>
-                    </div>
-                </div>
-
-                <div class="article-collapsible-content">
-                    <div class="article-body-padding">
-                        <div class="original-article">
-                            <p>Starting a career as a Virtual Assistant (VA) can feel overwhelming, especially when you see job posts asking for “experience” and “expert skills.” Many beginners think they need years of office work, advanced technical knowledge, or a long client history before they can start.</p>
-                            <p>The reality is different.</p>
-                            <p>Many successful Virtual Assistants started with no professional VA experience. They learned the skills, built confidence, created simple portfolios, and landed their first clients step by step.</p>
-                            <p>If you are willing to learn, stay organized, and provide value, you can start your VA journey from zero.</p>
-                            
-                            <h3>Can You Become a Virtual Assistant Without Experience?</h3>
-                            <p>Yes, you can become a Virtual Assistant without previous VA experience.</p>
-                            <p>Clients are not only looking for someone with a long resume. They are looking for someone reliable, organized, responsive, and capable of helping them save time.</p>
-                            <p>A Virtual Assistant supports businesses and entrepreneurs with tasks such as:</p>
-                            <ul>
-                                <li>Managing emails and calendars</li>
-                                <li>Data entry and research</li>
-                                <li>Customer support</li>
-                                <li>Social media assistance</li>
-                                <li>Creating documents and reports</li>
-                                <li>Scheduling appointments</li>
-                                <li>Administrative tasks</li>
-                                <li>Online organization</li>
-                            </ul>
-                            <p>Many of these skills are already part of everyday life.</p>
-                            <p>The key is not having “VA experience” — the key is showing that you can solve problems and handle responsibilities.</p>
-                            
-                            <h3>Transferable Skills You Already Have</h3>
-                            <p>You may already have skills that businesses need.</p>
-
-                            <h4>1. Communication Skills</h4>
-                            <p>If you can write clear messages, respond professionally, and communicate effectively, you already have an important VA skill.</p>
-                            <p>Virtual Assistants communicate with:</p>
-                            <ul>
-                                <li>Clients</li>
-                                <li>Customers</li>
-                                <li>Team members</li>
-                                <li>Suppliers</li>
-                            </ul>
-                            <p>Professional communication builds trust.</p>
-
-                            <h4>2. Organization Skills</h4>
-                            <p>Do you manage your schedule, appointments, files, or personal tasks?</p>
-                            <p>That is already a form of organization.</p>
-                            <p>A good VA knows how to:</p>
-                            <ul>
-                                <li>Keep files organized</li>
-                                <li>Track deadlines</li>
-                                <li>Manage multiple tasks</li>
-                                <li>Prioritize important work</li>
-                            </ul>
-
-                            <h4>3. Time Management</h4>
-                            <p>Businesses hire VAs because they need help saving time.</p>
-                            <p>If you can manage your own workload and complete tasks on schedule, you can develop this into a professional skill.</p>
-
-                            <h4>4. Problem-Solving Ability</h4>
-                            <p>Every client will have challenges.</p>
-                            <p>A valuable VA does not only wait for instructions — they find solutions.</p>
-                            <p>Examples:</p>
-                            <ul>
-                                <li>Finding better ways to organize files</li>
-                                <li>Researching information</li>
-                                <li>Improving workflows</li>
-                            </ul>
-
-                            <h3>Tools Every Beginner Virtual Assistant Should Learn</h3>
-                            <p>You do not need to master every tool immediately. Start with the basics.</p>
-
-                            <h4>Communication Tools</h4>
-                            <p>Learn how to use:</p>
-                            <ul>
-                                <li>Gmail</li>
-                                <li>Google Meet</li>
-                                <li>Zoom</li>
-                                <li>Slack</li>
-                            </ul>
-                            <p>These tools help you communicate with clients and teams.</p>
-
-                            <h4>Productivity Tools</h4>
-                            <p>Important beginner tools:</p>
-                            <ul>
-                                <li>Google Drive</li>
-                                <li>Google Docs</li>
-                                <li>Google Sheets</li>
-                                <li>Google Calendar</li>
-                                <li>Microsoft Office</li>
-                            </ul>
-                            <p>These are commonly used in administrative work.</p>
-
-                            <h4>Project Management Tools</h4>
-                            <p>Many companies use:</p>
-                            <ul>
-                                <li>Trello</li>
-                                <li>Asana</li>
-                                <li>ClickUp</li>
-                            </ul>
-                            <p>These help organize tasks and deadlines.</p>
-
-                            <h4>Design Tools</h4>
-                            <p>Basic design knowledge can increase your opportunities.</p>
-                            <p>Try learning:</p>
-                            <ul>
-                                <li>Canva</li>
-                            </ul>
-                            <p>You can create:</p>
-                            <ul>
-                                <li>Social media graphics</li>
-                                <li>Presentations</li>
-                                <li>Simple marketing materials</li>
-                            </ul>
-
-                            <h3>How to Create Your First Virtual Assistant Portfolio</h3>
-                            <p>A common beginner mistake is waiting for a client before creating a portfolio.</p>
-                            <p>You can create a portfolio without previous clients.</p>
-                            <p>Your portfolio should show what you can do.</p>
-                            <p>Include:</p>
-
-                            <h4>1. Introduction</h4>
-                            <p>Example:</p>
-                            <p>“Hi, I’m a Virtual Assistant helping businesses with administrative support, organization, and online tasks.”</p>
-
-                            <h4>2. Your Skills</h4>
-                            <p>List services you can provide:</p>
-                            <ul>
-                                <li>Email management</li>
-                                <li>Data entry</li>
-                                <li>Calendar management</li>
-                                <li>Research</li>
-                                <li>Document formatting</li>
-                                <li>Customer support</li>
-                            </ul>
-
-                            <h4>3. Sample Work</h4>
-                            <p>Create practice examples:</p>
-                            <ul>
-                                <li>A sample spreadsheet</li>
-                                <li>A sample email template</li>
-                                <li>A sample calendar system</li>
-                                <li>A sample social media post</li>
-                            </ul>
-                            <p>This proves your ability.</p>
-
-                            <h4>4. Professional Profile</h4>
-                            <p>Add:</p>
-                            <ul>
-                                <li>Your photo</li>
-                                <li>Contact details</li>
-                                <li>Short introduction</li>
-                                <li>Services offered</li>
-                            </ul>
-                            <p>A simple portfolio is better than having none.</p>
-
-                            <h3>Finding Your First Virtual Assistant Client</h3>
-                            <p>Your first client may not come instantly, but consistency matters.</p>
-                            <p>Here are places beginners can start:</p>
-
-                            <h4>Freelance Platforms</h4>
-                            <p>Create profiles on:</p>
-                            <ul>
-                                <li>Upwork</li>
-                                <li>Fiverr</li>
-                                <li>Freelancer</li>
-                            </ul>
-                            <p>Focus on building your reputation first.</p>
-
-                            <h4>Networking</h4>
-                            <p>Tell people what you do.</p>
-                            <p>Your first client could come from:</p>
-                            <ul>
-                                <li>Friends</li>
-                                <li>Previous coworkers</li>
-                                <li>Business owners</li>
-                                <li>Online communities</li>
-                            </ul>
-
-                            <h4>Apply Strategically</h4>
-                            <p>Do not send generic applications.</p>
-                            <p>Instead:</p>
-                            <ul>
-                                <li>Read the job post carefully</li>
-                                <li>Understand the client’s problem</li>
-                                <li>Explain how you can help</li>
-                            </ul>
-                            <p>Clients want solutions, not just a list of skills.</p>
-
-                            <h3>Common Mistakes Beginner Virtual Assistants Make</h3>
-                            
-                            <h4>1. Trying to Learn Everything at Once</h4>
-                            <p>You do not need to become an expert in every tool.</p>
-                            <p>Start with a few useful skills and improve over time.</p>
-
-                            <h4>2. Waiting Until You Feel “Ready”</h4>
-                            <p>Many beginners delay starting because they think they need perfect skills.</p>
-                            <p>The best way to improve is through practice.</p>
-
-                            <h4>3. Offering Too Many Services</h4>
-                            <p>Avoid saying:</p>
-                            <p>“I can do everything.”</p>
-                            <p>Instead, focus on a clear service.</p>
-                            <p>Example:</p>
-                            <p>“I help small businesses manage administrative tasks and online organization.”</p>
-
-                            <h4>4. Ignoring Professionalism</h4>
-                            <p>Small details matter:</p>
-                            <ul>
-                                <li>Respond on time</li>
-                                <li>Meet deadlines</li>
-                                <li>Communicate clearly</li>
-                                <li>Stay organized</li>
-                            </ul>
-                            <p>Reliability creates long-term clients.</p>
-
-                            <h3>Start Your Virtual Assistant Journey Today</h3>
-                            <p>Becoming a Virtual Assistant is not about having the perfect background.</p>
-                            <p>It is about building useful skills, creating proof of your ability, and taking consistent action.</p>
-                            <p>Start small.</p>
-                            <p>Learn one skill.</p>
-                            <p>Create one sample project.</p>
-                            <p>Apply for one opportunity.</p>
-                            <p>Every experienced VA started as a beginner.</p>
-                            <p>Your remote career can start with the first step.</p>
-                            
-                            <div class="card-section">
-                                <h3>Ready to start?</h3>
-                                <p>Download my free Virtual Assistant Beginner Checklist and learn the first steps you need to build your VA career.</p>
-                                <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn btn-primary">Download Free VA Checklist</a>
-                            </div>
+                        <div class="gradient-cta">
+                            <h3>Ready to Fast-Track Your VA Career?</h3>
+                            <p>Download the full 2026 Strategy Guide and master the digital ecosystem with actionable milestones.</p>
+                            <a href="https://forms.gle/8PkFuiDNwnQ3QMwh7" target="_blank" class="btn">Get Free Guide Now</a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -1039,59 +791,47 @@
     </main>
 
     <footer>
-        <div class="container">
-            <p class="footer-tagline">Start your journey as a professional Virtual Assistant.</p>
-            <p>© 2026 Virtual Assistant Career Guide. All Rights Reserved.</p>
-            <nav style="margin-top: 20px;">
-                <a href="#">LinkedIn</a> | <a href="#">Facebook</a> | <a href="#">Website Guide</a>
-            </nav>
+        <p class="footer-tagline">Virtual Assistant Insights Hub</p>
+        <p>&copy; 2026 Career Growth Portal. All rights reserved.</p>
+        <div style="margin-top: 15px;">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Support</a>
         </div>
     </footer>
 
     <script>
-        // Smoothly Expand or Collapse Main Article Accordions
         function toggleArticle(wrapperId) {
             const wrapper = document.getElementById(wrapperId);
-            const indicatorLabel = wrapper.querySelector('.read-more-indicator .action-label');
+            const allVAs = document.querySelectorAll('.interactive-article-wrapper');
             
-            // If opening an article, close the other one first to avoid visual conflicts in the grid
-            const allWrappers = document.querySelectorAll('.interactive-article-wrapper');
-            allWrappers.forEach(w => {
-                if (w.id !== wrapperId && !wrapper.classList.contains('is-open')) {
-                    w.classList.remove('is-open');
-                    const label = w.querySelector('.read-more-indicator .action-label');
-                    if(label) label.textContent = 'Read More';
+            allVAs.forEach(el => {
+                if(el.id !== wrapperId) {
+                    el.classList.remove('is-open');
                 }
             });
-
+            
             wrapper.classList.toggle('is-open');
             
-            if(indicatorLabel) {
+            setTimeout(() => {
                 if(wrapper.classList.contains('is-open')) {
-                    indicatorLabel.textContent = 'Minimize';
-                    // Smoothly scroll element into view when expanded
-                    setTimeout(() => {
-                        wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                } else {
-                    indicatorLabel.textContent = 'Read More';
+                    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            }
+            }, 300);
         }
 
-        // Smoothly Toggle Skill Highlight Details Inside Cards
         function toggleCard(cardElement, event) {
-            cardElement.classList.toggle('active-card');
-            const hintText = cardElement.querySelector('.card-action-hint span:first-child');
-            const hintIcon = cardElement.querySelector('.card-action-hint span:last-child');
+            event.stopPropagation();
+            const grid = cardElement.closest('.skills-grid');
+            const allCards = grid.querySelectorAll('.skill-card');
             
-            if(cardElement.classList.contains('active-card')) {
-                hintText.textContent = 'Hide Highlights';
-                hintIcon.textContent = '📂';
-            } else {
-                hintText.textContent = 'View Key Highlights';
-                hintIcon.textContent = '📁';
-            }
+            allCards.forEach(card => {
+                if(card !== cardElement) {
+                    card.classList.remove('active-card');
+                }
+            });
+            
+            cardElement.classList.toggle('active-card');
         }
     </script>
 </body>
